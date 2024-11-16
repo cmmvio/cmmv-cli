@@ -1,6 +1,6 @@
 {
     "name": "@cmmv/cli",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "Contract-Model-Model-View (CMMV) - Minimalistic Node.js Server Framework (@cli)",
     "type": "module",
     "publishConfig": {
@@ -12,10 +12,16 @@
     "bin": {
         "cmmv": "bin/cmmv.js"
     },
-    "keywords": ["cmmv", "ci", "npx", "start"],
+    "keywords": [
+        "cmmv",
+        "ci",
+        "npx",
+        "start"
+    ],
     "scripts": {
         "start": "node bin/cmmv.js",
-        "release": "release-it"
+        "release": "node scripts/release.js",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
     },
     "repository": {
         "type": "git",
@@ -27,21 +33,27 @@
     },
     "homepage": "https://github.com/andrehrferreira/cmmv-cli#readme",
     "dependencies": {
-        "chalk": "^5.3.0",
         "commander": "^11.1.0",
-        "execa": "^9.5.1",
         "fs-extra": "^11.2.0",
         "inquirer": "^9.3.7",
-        "ora": "^6.3.1"
+        "ora": "^6.3.1",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0"
     },
     "devDependencies": {
         "@types/inquirer": "^9.0.7",
         "@types/node": "^20.17.6",
+        "chalk": "^5.3.0",
+        "conventional-changelog": "^6.0.0",
+        "conventional-changelog-cli": "^5.0.0",
+        "enquirer": "^2.4.1",
         "eslint": "^8.57.1",
+        "execa": "^9.5.1",
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10",
         "prettier": "^3.3.3",
         "release-it": "^17.10.0",
+        "semver": "^7.6.3",
         "typescript": "^5.6.3"
     },
     "lint-staged": {
