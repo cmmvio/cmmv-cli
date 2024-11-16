@@ -1,0 +1,55 @@
+{
+    "name": "@cmmv/cli",
+    "version": "0.0.1",
+    "description": "Contract-Model-Model-View (CMMV) - Minimalistic Node.js Server Framework (@cli)",
+    "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=16.14"
+    },
+    "bin": {
+        "cmmv": "bin/cmmv.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "node bin/cmmv.js",
+        "prepack": "pnpm run build",
+        "release": "release-it",
+        "prepare": "husky install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andrehrferreira/cmmv-cli.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/andrehrferreira/cmmv-cli/issues"
+    },
+    "homepage": "https://github.com/andrehrferreira/cmmv-cli#readme",
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "commander": "^11.1.0",
+        "execa": "^9.5.1",
+        "fs-extra": "^11.2.0",
+        "inquirer": "^9.3.7",
+        "ora": "^6.3.1"
+    },
+    "devDependencies": {
+        "@types/inquirer": "^9.0.7",
+        "@types/node": "^20.17.6",
+        "eslint": "^8.57.1",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "prettier": "^3.3.3",
+        "release-it": "^17.10.0",
+        "typescript": "^5.6.3"
+    },
+    "lint-staged": {
+        "**/*.{ts,json}": [
+            "prettier --write",
+            "eslint --fix"
+        ]
+    }
+}

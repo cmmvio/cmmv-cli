@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "ES2021",
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "skipLibCheck": true,
+        "sourceMap": false,
+        "strict": true,
+        "esModuleInterop": true,
+        "useUnknownInCatchVariables": false,
+        "types": ["node", "jest"]
+    },
+    "include": ["actions/**/*.ts", "bin/**/*.ts", "commands/**/*.ts", "lib/**/*.ts"],
+    "exclude": ["node_modules", "e2e", "dist"]
+}
