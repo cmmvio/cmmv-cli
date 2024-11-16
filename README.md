@@ -38,7 +38,7 @@ cmmv init <project-name>
 For a one-time use without global installation, you can use ``npx``:
 
 ```bash
-pnpm dlx cmmv@latest init <project-name>
+pnpm dlx @cmmv/cli@latest init <project-name>
 ```
 
 ## Support
