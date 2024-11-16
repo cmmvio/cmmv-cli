@@ -12,20 +12,33 @@
   <a href="https://cmmv.io">Documentation</a> &bull;
   <a href="https://github.com/andrehrferreira/cmmv-server/issues">Report Issue</a>
 </p>
+
 ## Description
 
 The CMMV CLI is a versatile command-line tool designed to streamline the creation, development, and management of CMMV applications. It simplifies various tasks, such as generating the project structure, running the application in development mode, and preparing it for production with efficient building and bundling processes. This CLI promotes clean and modular architectural practices, encouraging well-organized and scalable applications.
-
-Leveraging schematics, the tool provides built-in support for generating components and features using the ``@cmmv/schematics`` package.
 
 For further details, explore the [documentation](https://cmmv.io/docs).
 
 ## Installation
 
-CMMV is available as a collection of npm packages. To install the core package, use npm:
+The ``@cmmv/cli`` package provides a simple command-line interface for quickly scaffolding CMMV projects. You can use it with pnpm global installation or directly with npx for one-time use.
 
 ```bash
-$ npm install @cmmv/cli
+pnpm add -g @cmmv/cli
+```
+
+Once installed globally, you can run the cmmv command anywhere:
+
+```bash
+cmmv init <project-name>
+```
+
+## Use with npx
+
+For a one-time use without global installation, you can use ``npx``:
+
+```bash
+pnpm dlx cmmv@latest init <project-name>
 ```
 
 ## Support
