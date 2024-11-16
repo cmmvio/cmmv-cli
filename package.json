@@ -12,12 +12,10 @@
     "bin": {
         "cmmv": "bin/cmmv.js"
     },
+    "keywords": ["cmmv", "ci", "npx", "start"],
     "scripts": {
-        "build": "tsc",
         "start": "node bin/cmmv.js",
-        "prepack": "pnpm run build",
-        "release": "release-it",
-        "prepare": "husky install"
+        "release": "release-it"
     },
     "repository": {
         "type": "git",
