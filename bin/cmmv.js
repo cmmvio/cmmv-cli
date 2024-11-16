@@ -29,7 +29,7 @@ const run = async () => {
             type: 'list',
             name: 'repository',
             message: '🗄️ Select repository type:',
-            choices: ['None', 'Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL'],
+            choices: ['None', 'Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
             default: 'None',
         },
         {
