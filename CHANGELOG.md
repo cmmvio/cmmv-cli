@@ -1,3 +1,7 @@
+# [0.1.0](https://github.com/andrehrferreira/cmmv-cli/compare/v0.0.9...v0.1.0) (2024-11-18)
+
+
+
 ## [0.0.9](https://github.com/andrehrferreira/cmmv-cli/compare/v0.0.8...v0.0.9) (2024-11-16)
 
 
