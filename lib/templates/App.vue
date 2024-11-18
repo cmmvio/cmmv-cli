@@ -1,111 +1,110 @@
 <template>
-    <div class="container">
-      <div class="logo-container center" style="text-align: center;">
-        <img
-          src="https://raw.githubusercontent.com/andrehrferreira/docs.cmmv.io/main/public/assets/logo_CMMV2_icon.png"
-          alt="CMMV Logo"
-          class="logo m-auto"
-        />
-        <h1 class="title">Hello World CMMV</h1>
-      </div>
+  <div class="containerCMMV">
+    <div class="logo-container center" style="text-align: center;">
+      <img
+        src="https://raw.githubusercontent.com/andrehrferreira/docs.cmmv.io/main/public/assets/logo_CMMV2_icon.png"
+        alt="CMMV Logo"
+        class="logo m-auto"
+      />
+      <h1 class="title">Hello World CMMV</h1>
     </div>
-  </template>
-  
-  <style scoped>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #000000, #00172d);
-    overflow: hidden;
-    position: relative;
+  </div>
+</template>
+
+<style scoped>
+.containerCMMV {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000, #00172d);
+  overflow: hidden;
+  position: relative;
+}
+
+.containerCMMV::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 150, 0.4), transparent 70%);
+  filter: blur(150px);
+  animation: auroraGreen 8s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.containerCMMV::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(128, 0, 255, 0.4), transparent 70%);
+  filter: blur(150px);
+  animation: auroraPurple 10s infinite alternate-reverse ease-in-out;
+  z-index: 0;
+}
+
+@keyframes auroraGreen {
+  0% {
+    transform: translate(-10%, -20%) rotate(0deg);
   }
-  
-  .container::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 255, 150, 0.4), transparent 70%);
-    filter: blur(150px);
-    animation: auroraGreen 8s infinite alternate ease-in-out;
-    z-index: 0;
+  50% {
+    transform: translate(15%, 25%) rotate(60deg);
   }
-  
-  .container::after {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(128, 0, 255, 0.4), transparent 70%);
-    filter: blur(150px);
-    animation: auroraPurple 10s infinite alternate-reverse ease-in-out;
-    z-index: 0;
+  100% {
+    transform: translate(-10%, -20%) rotate(120deg);
   }
-  
-  @keyframes auroraGreen {
-    0% {
-      transform: translate(-10%, -20%) rotate(0deg);
-    }
-    50% {
-      transform: translate(15%, 25%) rotate(60deg);
-    }
-    100% {
-      transform: translate(-10%, -20%) rotate(120deg);
-    }
+}
+
+@keyframes auroraPurple {
+  0% {
+    transform: translate(10%, 20%) rotate(0deg);
   }
-  
-  @keyframes auroraPurple {
-    0% {
-      transform: translate(10%, 20%) rotate(0deg);
-    }
-    50% {
-      transform: translate(-15%, -25%) rotate(-60deg);
-    }
-    100% {
-      transform: translate(10%, 20%) rotate(-120deg);
-    }
+  50% {
+    transform: translate(-15%, -25%) rotate(-60deg);
   }
-  
-  .logo-container {
-    position: relative;
-    text-align: center;
-    z-index: 1;
+  100% {
+    transform: translate(10%, 20%) rotate(-120deg);
   }
-  
-  .logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
+}
+
+.logo-container {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.title {
+  color: white;
+  font-size: 2rem;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.7), 0 0 20px rgba(128, 0, 255, 0.7);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
   }
-  
-  .title {
-    color: white;
-    font-size: 2rem;
-    font-family: 'Arial', sans-serif;
-    text-shadow: 0 0 10px rgba(0, 255, 150, 0.7), 0 0 20px rgba(128, 0, 255, 0.7);
+  50% {
+    transform: translateY(-10px);
   }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
+  100% {
+    transform: translateY(0);
   }
-  </style>
-  
-  <script setup lang="ts">
-  import CmmvMixins from "http://localhost:3000/assets/rpc-mixins.js";
-  
-  defineOptions({
-    mixins: [CmmvMixins],
-  });
-  </script>
-  
+}
+</style>
+
+<script setup lang="ts">
+import CmmvMixins from "http://localhost:3000/assets/rpc-mixins.js";
+
+defineOptions({
+  mixins: [CmmvMixins],
+});
+</script>
