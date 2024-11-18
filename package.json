@@ -1,6 +1,6 @@
 {
     "name": "@cmmv/cli",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Contract-Model-Model-View (CMMV) - Minimalistic Node.js Server Framework (@cli)",
     "type": "module",
     "publishConfig": {
