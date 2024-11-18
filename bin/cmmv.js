@@ -6,7 +6,7 @@ import { configureProject } from '../lib/helpers.js';
 const run = async () => {
     console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
 
-    const { projectName, vite, rpc, cache, repository, view, eslint, prettier, vitest } = await inquirer.prompt([
+    const { projectName, vite, rpc, cache, repository, view, eslint, prettier, vitest, formbuilder } = await inquirer.prompt([
         {
             type: 'input',
             name: 'projectName',
@@ -29,21 +29,27 @@ const run = async () => {
             type: 'list',
             name: 'repository',
             message: '🗄️ Select repository type:',
-            choices: ['None', 'Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
-            default: 'None',
+            choices: ['Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
+            default: 'Sqlite',
         },
         {
             type: 'confirm',
             name: 'cache',
             message: '🧳 Enable Cache module?',
-            default: false,
+            default: true,
         },
         {
             type: 'list',
             name: 'view',
             message: '🎨 Select View configuration:',
             choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
-            default: 'Reactivity',
+            default: 'Vue3 + TailwindCSS',
+        },
+        {
+            type: 'confirm',
+            name: 'formbuilder',
+            message: '📝 Enable FormBuilder?',
+            default: true,
         },
         {
             type: 'confirm',
@@ -65,16 +71,24 @@ const run = async () => {
         },
     ]);
 
+    let finalView = view;
+    let finalVite = vite;
+    if (formbuilder && view !== 'Vue3 + TailwindCSS') {
+        console.log(`\n🔧 FormBuilder requires View to be Vue3 + TailwindCSS. Adjusting configuration...`);
+        finalView = 'Vue3 + TailwindCSS';
+        finalVite = true;
+    }
+
     console.log(`\n🚀 Initializing project "${projectName}"...`);
 
     try {
         await configureProject({ 
-            projectName, vite, rpc, cache, repository, view, 
-            eslint, prettier, vitest
+            projectName, vite: finalVite, rpc, cache, repository, view: finalView, 
+            eslint, prettier, vitest, formbuilder 
         });
 
         console.log(`\n🎉 Project "${projectName}" created successfully!`);
-        console.log(`\n✨ To get started:\n   📂 cd ${projectName}\n   ▶️ pnpm dev`);
+        console.log(`\n✨ To get started:\n   📂 cd ${projectName}\n   ▶️  pnpm dev`);
         console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
     } catch (error) {
         console.error(`❌ Error creating project: ${error.message}`);

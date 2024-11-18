@@ -1,0 +1,27 @@
+{
+    "options": {
+        "syntax": "proto3"
+    },
+    "nested": {
+        "wserror": {
+            "nested": {
+                "WsError": {
+                    "fields": {
+                        "message": {
+                            "type": "string",
+                            "id": 1
+                        },
+                        "code": {
+                            "type": "int32",
+                            "id": 2
+                        },
+                        "context": {
+                            "type": "string",
+                            "id": 3
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
