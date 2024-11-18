@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.0...v0.2.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* vite.config.js ([301cd23](https://github.com/andrehrferreira/cmmv-cli/commit/301cd234519eccdb19cbafb384e22b7f796ae37f))
+
+
+
 # [0.2.0](https://github.com/andrehrferreira/cmmv-cli/compare/v0.1.2...v0.2.0) (2024-11-18)
 
 
