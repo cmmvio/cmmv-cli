@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/andrehrferreira/cmmv-cli/compare/v0.1.0...v0.1.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* readme ([4278459](https://github.com/andrehrferreira/cmmv-cli/commit/427845925292de1c0153971439b99f9c1ea4c191))
+
+
+
 # [0.1.0](https://github.com/andrehrferreira/cmmv-cli/compare/v0.0.9...v0.1.0) (2024-11-18)
 
 
