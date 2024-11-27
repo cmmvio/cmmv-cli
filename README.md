@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://cmmv.io">Documentation</a> &bull;
-  <a href="https://github.com/andrehrferreira/cmmv-server/issues">Report Issue</a>
+  <a href="https://github.com/andrehrferreira/cmmv-cli/issues">Report Issue</a>
 </p>
 
 ## Description
@@ -40,18 +40,3 @@ For a one-time use without global installation, you can use ``npx``:
 ```bash
 pnpm dlx @cmmv/cli@latest init <project-name>
 ```
-
-## Support
-
-CMMV is an open-source project, and we are always looking for contributors to help improve it. If you encounter a bug or have a feature request, please open an issue on [GitHub](https://github.com/andrehrferreira/cmmv/issues).
-
-## Stay in Touch
-
-- Author - [André Ferreira](https://github.com/andrehrferreira)
-- Twitter - [@andrehrferreira](https://twitter.com/andrehrferreira)
-- Linkdin - [@andrehrf](https://www.linkedin.com/in/andrehrf)
-- Youtube - [@Andrehrferreira](https://www.youtube.com/@Andrehrferreira)
-
-## License
-
-CMMV is [MIT licensed](LICENSE).
