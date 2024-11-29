@@ -69,8 +69,9 @@ const createProject = async (args) => {
                 { name: 'Keyv', value: 'keyv' },
                 { name: 'Inspector', value: 'inspector' },
                 { name: 'Scheduling', value: 'scheduling' },
-                { name: 'Normalizer', value: 'normalizer' },
-                { name: 'Queue', value: 'queue' },
+                { name: 'Normalizer (Beta)', value: 'normalizer' },
+                { name: 'Queue (Beta)', value: 'queue' },
+                { name: 'Elastic (Beta)', value: 'elastic' },
             ],
         },
         {
