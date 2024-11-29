@@ -30,7 +30,7 @@ pnpm add -g @cmmv/cli
 Once installed globally, you can run the cmmv command anywhere:
 
 ```bash
-cmmv init <project-name>
+cmmv create <project-name>
 ```
 
 ## Use with npx
@@ -38,5 +38,23 @@ cmmv init <project-name>
 For a one-time use without global installation, you can use ``npx``:
 
 ```bash
-pnpm dlx @cmmv/cli@latest init <project-name>
+pnpm dlx @cmmv/cli@latest create <project-name>
+```
+
+## Commands
+
+### ``create``
+
+Generates a new CMMV project with a predefined structure. It provides options to enable or disable features like Vite, RPC, caching, and more.
+
+```bash
+cmmv create <project-name>
+```
+
+### ``module``
+
+Creates a new module within an existing CMMV project. Modules are reusable components or feature-specific units of your application.
+
+```bash
+cmmv module <module-name>
 ```
