@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.3...v0.2.4) (2024-11-29)
+
+
+### Features
+
+* module command ([eaf3e5f](https://github.com/andrehrferreira/cmmv-cli/commit/eaf3e5f16b6f7d6fb4ad58cfab91584b4c22b08a))
+
+
+
 ## [0.2.3](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.2...v0.2.3) (2024-11-28)
 
 

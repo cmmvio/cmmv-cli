@@ -1,6 +1,6 @@
 {
     "name": "@cmmv/cli",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "CMMV (@cli)",
     "type": "module",
     "publishConfig": {
