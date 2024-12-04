@@ -1,3 +1,18 @@
+# [0.3.0](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.5...v0.3.0) (2024-12-04)
+
+
+### Bug Fixes
+
+* dependences ([e8d1013](https://github.com/andrehrferreira/cmmv-cli/commit/e8d1013ec56e8d22d7705e15b116063285a6fc11))
+
+
+### Features
+
+* elastic ([b1a6229](https://github.com/andrehrferreira/cmmv-cli/commit/b1a62294e3d4fa752937f0a5b83f520be425134e))
+* generate contract, and fixes ([2d264e6](https://github.com/andrehrferreira/cmmv-cli/commit/2d264e6ca6a70b30322306f12dc2ebc55c4bbece))
+
+
+
 ## [0.2.5](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.4...v0.2.5) (2024-11-29)
 
 
