@@ -23,6 +23,20 @@ For further details, explore the [documentation](https://cmmv.io/docs).
 
 The ``@cmmv/cli`` package provides a simple command-line interface for quickly scaffolding CMMV projects. You can use it with pnpm global installation or directly with npx for one-time use.
 
+### Install `pnpm`
+
+If you don't have `pnpm` installed, you can install it using npm:
+
+```bash
+npm install -g pnpm
+```
+
+For additional installation options, refer to the [pnpm installation guide](https://pnpm.io/installation).
+
+### Install CMMV CLI
+
+Once `pnpm` is installed, you can install the CMMV CLI globally:
+
 ```bash
 pnpm add -g @cmmv/cli
 ```
