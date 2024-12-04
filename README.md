@@ -72,3 +72,12 @@ Creates a new module within an existing CMMV project. Modules are reusable compo
 ```bash
 cmmv module <module-name>
 ```
+
+
+### ``contract``
+
+Create a new contract with the selected options such as cache, fields, validations
+
+```bash
+cmmv contract <contract-name>
+```
