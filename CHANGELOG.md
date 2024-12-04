@@ -1,3 +1,31 @@
+## [0.3.2](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.0...v0.3.2) (2024-12-04)
+
+
+### Bug Fixes
+
+* readme ([dfea9ac](https://github.com/andrehrferreira/cmmv-cli/commit/dfea9ac44539ba591ab8ef3853279dde06678305))
+
+
+### Features
+
+* remove CI ([67d1a59](https://github.com/andrehrferreira/cmmv-cli/commit/67d1a59be63ccd17e4f08f479c3735817bf4ff1c))
+
+
+
+## [0.3.1](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.0...v0.3.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* readme ([dfea9ac](https://github.com/andrehrferreira/cmmv-cli/commit/dfea9ac44539ba591ab8ef3853279dde06678305))
+
+
+### Features
+
+* remove CI ([67d1a59](https://github.com/andrehrferreira/cmmv-cli/commit/67d1a59be63ccd17e4f08f479c3735817bf4ff1c))
+
+
+
 # [0.3.0](https://github.com/andrehrferreira/cmmv-cli/compare/v0.2.5...v0.3.0) (2024-12-04)
 
 
