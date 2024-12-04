@@ -27,7 +27,7 @@
         "useDefineForClassFields": true,
         "allowJs": false,
         "lib": ["esnext", "dom"],
-        "types": ["node", "mocha"],
+        "types": ["node"],
     },
     "include": ["src/**/*.ts", "vueform.config.ts",],
     "exclude": ["node_modules", "dist", "**/*.spec.ts"]

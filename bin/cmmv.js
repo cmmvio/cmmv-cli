@@ -3,7 +3,11 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import inquirer from 'inquirer';
-import { configureProject, configureModule } from '../lib/helpers.js';
+
+import { 
+    configureProject, configureModule,
+    configureContract
+ } from '../lib/helpers.js';
 
 const createProject = async (args) => {
     console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
@@ -51,12 +55,12 @@ const createProject = async (args) => {
             choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
             default: 'Vue3 + TailwindCSS',
         },
-        {
+        /*{
             type: 'confirm',
             name: 'formbuilder',
             message: '📝 Enable FormBuilder? (Beta)',
             default: true,
-        },
+        },*/
         {
             type: 'checkbox',
             name: 'additionalModules',
@@ -186,7 +190,176 @@ const createModule = async (args) => {
         console.log(`\n✨ To get started:\n   📂 cd ${moduleName}\n   ▶️  pnpm build`);
         console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
     } catch (error) {
-        console.error(`❌ Error creating project: ${error.message}`);
+        console.error(`❌ Error creating module: ${error.message}`);
+        console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
+    }
+}
+
+const createContract = async (args) => {
+    console.log(`✨ Welcome to the CMMV Contract Generator! ✨`);
+
+    const contractOptions = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'controllerName',
+            message: '📂 Enter the controller name:',
+            default: args._[1] || 'MyController',
+        },
+        {
+            type: 'input',
+            name: 'protoPath',
+            message: '📜 Enter the proto file path:',
+            default: `src/protos/${args._[1].toLowerCase()}.proto`,
+        },
+        {
+            type: 'input',
+            name: 'protoPackage',
+            message: '📦 Enter the proto package name:',
+            default: args._[1].toLowerCase(),
+        },
+        {
+            type: 'confirm',
+            name: 'generateController',
+            message: '🚀 Generate a controller?',
+            default: true,
+        },
+        {
+            type: 'confirm',
+            name: 'generateEntities',
+            message: '💾 Generate entities?',
+            default: true,
+        },
+        {
+            type: 'checkbox',
+            name: 'imports',
+            message: '📦 Select imports for the contract:',
+            choices: ['crypto'],
+        },
+        {
+            type: 'confirm',
+            name: 'enableCache',
+            message: '🧳 Enable cache?',
+            default: false,
+        },
+    ]);
+
+    let cacheOptions = {};
+
+    if (contractOptions.enableCache) {
+        cacheOptions = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'key',
+                message: '🔑 Enter cache key prefix:',
+                default: `${contractOptions.controllerName.toLowerCase()}:`,
+            },
+            {
+                type: 'number',
+                name: 'ttl',
+                message: '⏳ Enter cache TTL (seconds):',
+                default: 300,
+            },
+            {
+                type: 'confirm',
+                name: 'compress',
+                message: '📦 Enable compression?',
+                default: true,
+            },
+        ]);
+    }
+
+    const fields = [];
+    let addField = true;
+
+    while (addField) {
+        const field = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: '🛠️ Enter field name:',
+            },
+            {
+                type: 'list',
+                name: 'protoType',
+                message: '📜 Select proto type:',
+                choices: ['string', 'bool', 'int32', 'int64', 'double', 'float', 'date', 'bytes'],
+            },
+            {
+                type: 'confirm',
+                name: 'protoRepeated',
+                message: '🔄 Is this a repeated field?',
+                default: false,
+            },
+            {
+                type: 'confirm',
+                name: 'unique',
+                message: '🔑 Should this field be unique?',
+                default: false,
+            },
+            {
+                type: 'confirm',
+                name: 'nullable',
+                message: '🗂️ Is this field nullable?',
+                default: true,
+            },
+            {
+                type: 'confirm',
+                name: 'addValidations',
+                message: '🛡️ Add validations to this field?',
+                default: false,
+            },
+        ]);
+
+        if (field.addValidations) {
+            field.validations = [];
+            let addValidation = true;
+
+            while (addValidation) {
+                const validation = await inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'type',
+                        message: '🛡️ Enter validation type:',
+                    },
+                    {
+                        type: 'input',
+                        name: 'message',
+                        message: '💬 Enter validation error message:',
+                    },
+                ]);
+                field.validations.push(validation);
+
+                addValidation = (await inquirer.prompt({
+                    type: 'confirm',
+                    name: 'addMore',
+                    message: '➕ Add another validation?',
+                    default: false,
+                })).addMore;
+            }
+        }
+
+        fields.push(field);
+
+        addField = (await inquirer.prompt({
+            type: 'confirm',
+            name: 'addAnotherField',
+            message: '➕ Add another field?',
+            default: true,
+        })).addAnotherField;
+    }
+
+    console.log(`\n🚀 Initializing contract "${contractOptions.controllerName}"...`);
+
+    try {
+        await configureContract({ 
+            contractOptions,
+            cacheOptions,
+            fields
+        });
+
+        console.log(`\n🎉 Contract "${contractOptions.controllerName}" created successfully!`);
+        console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
+    } catch (error) {
         console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
     }
 }
@@ -250,6 +423,12 @@ yargs(hideBin(process.argv))
         'Create a new CMMV module',
         { },
         createModule,
+    )
+    .command(
+        'contract',
+        'Create a new CMMV contract',
+        { },
+        createContract,
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
