@@ -6,7 +6,7 @@ import inquirer from 'inquirer';
 
 import { 
     configureProject, configureModule,
-    configureContract
+    configureContract, configureTesting
  } from '../lib/helpers.js';
 
 const createProject = async (args) => {
@@ -21,46 +21,40 @@ const createProject = async (args) => {
             type: 'input',
             name: 'projectName',
             message: '📦 Enter the project name:',
-            default: args._[1],
+            default: args.projectName,
         },
         {
             type: 'confirm',
             name: 'vite',
             message: '⚡ Enable Vite Middleware?',
-            default: true,
+            default: args.vite,
         },
         {
             type: 'confirm',
             name: 'rpc',
             message: '🔌 Enable RPC (WebSocket)?',
-            default: true,
+            default: args.rpc,
         },
         {
             type: 'list',
             name: 'repository',
             message: '🗄️ Select repository type:',
             choices: ['Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
-            default: 'Sqlite',
+            default: args.repository,
         },
         {
             type: 'confirm',
             name: 'cache',
             message: '🧳 Enable Cache module?',
-            default: true,
+            default: args.cache,
         },
         {
             type: 'list',
             name: 'view',
             message: '🎨 Select View configuration:',
             choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
-            default: 'Vue3 + TailwindCSS',
+            default: args.view,
         },
-        /*{
-            type: 'confirm',
-            name: 'formbuilder',
-            message: '📝 Enable FormBuilder? (Beta)',
-            default: true,
-        },*/
         {
             type: 'checkbox',
             name: 'additionalModules',
@@ -76,25 +70,26 @@ const createProject = async (args) => {
                 { name: 'Normalizer (Beta)', value: 'normalizer' },
                 { name: 'Queue (Beta)', value: 'queue' },
                 { name: 'Elastic (Beta)', value: 'elastic' },
+                { name: 'Testing (Beta)', value: 'testing' },
             ],
         },
         {
             type: 'confirm',
             name: 'eslint',
             message: '🔍 Add Eslint ?',
-            default: true,
+            default: args.eslint,
         },
         {
             type: 'confirm',
             name: 'prettier',
             message: '🖌️ Add Prettier?',
-            default: true,
+            default: args.prettier,
         },
         {
             type: 'confirm',
             name: 'vitest',
             message: '🧪 Add Vitest?',
-            default: true,
+            default: args.vitest,
         },
     ]);
 
@@ -135,12 +130,13 @@ const createModule = async (args) => {
             type: 'input',
             name: 'moduleName',
             message: '📦 Enter the module name:',
-            default: args._[1],
+            default: args.moduleName,
         },
         {
             type: 'input',
             name: 'author',
             message: '✍️ Enter author name:',
+            default: args.author,
         },
         {
             type: 'checkbox',
@@ -156,25 +152,19 @@ const createModule = async (args) => {
             type: 'confirm',
             name: 'eslint',
             message: '🔍 Add Eslint?',
-            default: true,
+            default: args.eslint,
         },
         {
             type: 'confirm',
             name: 'prettier',
             message: '🖌️ Add Prettier?',
-            default: true,
-        },
-        {
-            type: 'confirm',
-            name: 'vitest',
-            message: '🧪 Add Vitest?',
-            default: true,
+            default: args.prettier,
         },
         {
             type: 'confirm',
             name: 'release',
             message: '✨ Add Release Script?',
-            default: true,
+            default: args.release,
         },
     ]);
 
@@ -193,7 +183,7 @@ const createModule = async (args) => {
         console.error(`❌ Error creating module: ${error.message}`);
         console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
     }
-}
+};
 
 const createContract = async (args) => {
     console.log(`✨ Welcome to the CMMV Contract Generator! ✨`);
@@ -203,43 +193,44 @@ const createContract = async (args) => {
             type: 'input',
             name: 'controllerName',
             message: '📂 Enter the controller name:',
-            default: args._[1] || 'MyController',
+            default: args.controllerName || 'MyController',
         },
         {
             type: 'input',
             name: 'protoPath',
             message: '📜 Enter the proto file path:',
-            default: `src/protos/${args._[1].toLowerCase()}.proto`,
+            default: args.protoPath || `src/protos/${args.controllerName?.toLowerCase()}.proto`,
         },
         {
             type: 'input',
             name: 'protoPackage',
             message: '📦 Enter the proto package name:',
-            default: args._[1].toLowerCase(),
+            default: args.protoPackage || args.controllerName?.toLowerCase(),
         },
         {
             type: 'confirm',
             name: 'generateController',
             message: '🚀 Generate a controller?',
-            default: true,
+            default: args.generateController,
         },
         {
             type: 'confirm',
             name: 'generateEntities',
             message: '💾 Generate entities?',
-            default: true,
+            default: args.generateEntities,
         },
         {
             type: 'checkbox',
             name: 'imports',
             message: '📦 Select imports for the contract:',
             choices: ['crypto'],
+            default: args.imports || [],
         },
         {
             type: 'confirm',
             name: 'enableCache',
             message: '🧳 Enable cache?',
-            default: false,
+            default: args.enableCache,
         },
     ]);
 
@@ -251,19 +242,19 @@ const createContract = async (args) => {
                 type: 'input',
                 name: 'key',
                 message: '🔑 Enter cache key prefix:',
-                default: `${contractOptions.controllerName.toLowerCase()}:`,
+                default: args.cacheKey || `${contractOptions.controllerName.toLowerCase()}:`,
             },
             {
                 type: 'number',
                 name: 'ttl',
                 message: '⏳ Enter cache TTL (seconds):',
-                default: 300,
+                default: args.cacheTTL || 300,
             },
             {
                 type: 'confirm',
                 name: 'compress',
                 message: '📦 Enable compression?',
-                default: true,
+                default: args.cacheCompress || true,
             },
         ]);
     }
@@ -277,12 +268,14 @@ const createContract = async (args) => {
                 type: 'input',
                 name: 'name',
                 message: '🛠️ Enter field name:',
+                default: '',
             },
             {
                 type: 'list',
                 name: 'protoType',
                 message: '📜 Select proto type:',
                 choices: ['string', 'bool', 'int32', 'int64', 'double', 'float', 'date', 'bytes'],
+                default: 'string',
             },
             {
                 type: 'confirm',
@@ -354,15 +347,41 @@ const createContract = async (args) => {
         await configureContract({ 
             contractOptions,
             cacheOptions,
-            fields
+            fields,
         });
 
         console.log(`\n🎉 Contract "${contractOptions.controllerName}" created successfully!`);
         console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
     } catch (error) {
+        console.error(`❌ Error creating contract: ${error.message}`);
         console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
     }
-}
+};
+
+const createTesting = async (args) => {
+    console.log(`✨ Welcome to the CMMV Testing Generator! ✨`);
+
+    const { testingName } = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'testingName',
+            message: '📂 Enter the testing name:',
+            default: args.testingName || 'mytest',
+        },
+    ]);
+
+    console.log(`\n🚀 Initializing testing "${testingName}"...`);
+
+    try {
+        await configureTesting({ testingName });
+
+        console.log(`\n🎉 Testing "${testingName}" created successfully!`);
+        console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
+    } catch (error) {
+        console.error(`❌ Error creating testing: ${error.message}`);
+        console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
+    }
+};
 
 yargs(hideBin(process.argv))
     .command(
@@ -372,63 +391,138 @@ yargs(hideBin(process.argv))
             projectName: {
                 type: 'string',
                 describe: 'Name of the project',
+                default: 'my-project',
             },
             vite: {
                 type: 'boolean',
                 describe: 'Enable Vite Middleware',
+                default: true,
             },
             rpc: {
                 type: 'boolean',
                 describe: 'Enable RPC (WebSocket)',
+                default: true,
             },
             repository: {
                 type: 'string',
                 choices: ['Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
                 describe: 'Repository type',
+                default: 'Sqlite',
             },
             cache: {
                 type: 'boolean',
                 describe: 'Enable Cache module',
+                default: true,
             },
             view: {
                 type: 'string',
                 choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
                 describe: 'View configuration',
-            },
-            formbuilder: {
-                type: 'boolean',
-                describe: 'Enable FormBuilder',
-            },
-            additionalModules: {
-                type: 'array',
-                describe: 'Additional CMMV modules to include',
+                default: 'Vue3 + TailwindCSS',
             },
             eslint: {
                 type: 'boolean',
                 describe: 'Add Eslint',
+                default: true,
             },
             prettier: {
                 type: 'boolean',
                 describe: 'Add Prettier',
+                default: true,
             },
             vitest: {
                 type: 'boolean',
                 describe: 'Add Vitest',
+                default: true,
             },
         },
-        createProject,
+        createProject
     )
     .command(
         'module',
         'Create a new CMMV module',
-        { },
-        createModule,
+        {
+            moduleName: {
+                type: 'string',
+                describe: 'Name of the module',
+                default: 'my-module',
+            },
+            author: {
+                type: 'string',
+                describe: 'Author of the module',
+                default: 'Anonymous',
+            },
+            eslint: {
+                type: 'boolean',
+                describe: 'Add Eslint',
+                default: true,
+            },
+            prettier: {
+                type: 'boolean',
+                describe: 'Add Prettier',
+                default: true,
+            },
+            vitest: {
+                type: 'boolean',
+                describe: 'Add Vitest',
+                default: true,
+            },
+            release: {
+                type: 'boolean',
+                describe: 'Add Release Script',
+                default: true,
+            },
+        },
+        createModule
     )
     .command(
         'contract',
         'Create a new CMMV contract',
-        { },
-        createContract,
+        {
+            controllerName: {
+                type: 'string',
+                describe: 'Name of the controller',
+                default: 'MyController',
+            },
+            protoPath: {
+                type: 'string',
+                describe: 'Path to the proto file',
+                default: 'src/protos/mycontroller.proto',
+            },
+            protoPackage: {
+                type: 'string',
+                describe: 'Proto package name',
+                default: 'mycontroller',
+            },
+            generateController: {
+                type: 'boolean',
+                describe: 'Generate a controller',
+                default: true,
+            },
+            generateEntities: {
+                type: 'boolean',
+                describe: 'Generate entities',
+                default: true,
+            },
+            enableCache: {
+                type: 'boolean',
+                describe: 'Enable cache',
+                default: false,
+            },
+        },
+        createContract
+    )
+    .command(
+        'testing',
+        'Create a new CMMV testing file',
+        {
+            testingName: {
+                type: 'string',
+                describe: 'Name of the testing file',
+                default: 'mytest',
+            },
+        },
+        createTesting
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
