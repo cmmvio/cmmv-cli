@@ -1,3 +1,17 @@
+## [0.3.4](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.3...v0.3.4) (2024-12-07)
+
+
+### Bug Fixes
+
+* update template title ([8cc4fb5](https://github.com/andrehrferreira/cmmv-cli/commit/8cc4fb5e8f108ac393966ba6dacd79d02a8ebbf5))
+
+
+### Features
+
+* user relative path for cmmv mixin import ([3698f38](https://github.com/andrehrferreira/cmmv-cli/commit/3698f38dbb0af2a99ce15c2b27b69f7cd878f4a7))
+
+
+
 ## [0.3.3](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.2...v0.3.3) (2024-12-06)
 
 
