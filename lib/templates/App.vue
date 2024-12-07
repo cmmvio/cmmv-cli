@@ -102,7 +102,7 @@
 </style>
 
 <script setup lang="ts">
-import CmmvMixins from "http://localhost:3000/assets/rpc-mixins.js";
+import CmmvMixins from "./assets/rpc-mixins.js";
 
 defineOptions({
   mixins: [CmmvMixins],
