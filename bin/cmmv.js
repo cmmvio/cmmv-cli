@@ -53,17 +53,17 @@ const createProject = async (args) => {
             name: 'additionalModules',
             message: '📦 Select additional CMMV modules to include:',
             choices: [
-                { name: 'Inspector (Debug)', value: 'inspector' },
-                { name: 'Cache', value: 'cache' },
                 { name: 'Auth', value: 'auth' },
+                { name: 'Cache', value: 'cache' },
+                { name: 'Elastic (Beta)', value: 'elastic' },
                 { name: 'Encryptor', value: 'encryptor' },
-                { name: 'Keyv', value: 'keyv' },
+                { name: 'Events (Beta)', value: 'events' },
                 { name: 'Inspector', value: 'inspector' },
-                { name: 'Scheduling', value: 'scheduling' },
+                { name: 'Keyv', value: 'keyv' },
                 { name: 'Normalizer (Beta)', value: 'normalizer' },
                 { name: 'Queue (Beta)', value: 'queue' },
-                { name: 'Elastic (Beta)', value: 'elastic' },
-                { name: 'Testing (Beta)', value: 'testing' },
+                { name: 'Scheduling', value: 'scheduling' },
+                { name: 'Testing (Beta)', value: 'testing' }
             ],
         },
         {
