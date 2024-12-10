@@ -1,3 +1,13 @@
+## [0.3.6](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.5...v0.3.6) (2024-12-10)
+
+
+### Bug Fixes
+
+* fixes cli ([964e9c5](https://github.com/andrehrferreira/cmmv-cli/commit/964e9c5659168a74c63c2396bd9998a5f2df9a43))
+* hello world ([93b3da8](https://github.com/andrehrferreira/cmmv-cli/commit/93b3da81d11211debe770c3c3bdded04db5b81b7))
+
+
+
 ## [0.3.5](https://github.com/andrehrferreira/cmmv-cli/compare/v0.3.4...v0.3.5) (2024-12-10)
 
 
