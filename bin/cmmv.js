@@ -14,8 +14,8 @@ const createProject = async (args) => {
 
     const { 
         projectName, vite, rpc, cache,
-        repository, view, eslint, prettier, 
-        vitest, formbuilder, additionalModules 
+        repository, eslint, prettier, 
+        vitest, additionalModules 
     } = await inquirer.prompt([
         {
             type: 'input',
@@ -47,13 +47,6 @@ const createProject = async (args) => {
             name: 'cache',
             message: '🧳 Enable Cache module?',
             default: args.cache,
-        },
-        {
-            type: 'list',
-            name: 'view',
-            message: '🎨 Select View configuration:',
-            choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
-            default: args.view,
         },
         {
             type: 'checkbox',
@@ -93,21 +86,12 @@ const createProject = async (args) => {
         },
     ]);
 
-    let finalView = view;
-    let finalVite = vite;
-
-    if (formbuilder && view !== 'Vue3 + TailwindCSS') {
-        console.log(`\n🔧 FormBuilder requires View to be Vue3 + TailwindCSS. Adjusting configuration...`);
-        finalView = 'Vue3 + TailwindCSS';
-        finalVite = true;
-    }
-
     console.log(`\n🚀 Initializing project "${projectName}"...`);
 
     try {
         await configureProject({ 
-            projectName, vite: finalVite, rpc, cache, repository, view: finalView, 
-            eslint, prettier, vitest, formbuilder, additionalModules 
+            projectName, vite, rpc, cache, repository,  
+            eslint, prettier, vitest, additionalModules 
         });
 
         console.log(`\n🎉 Project "${projectName}" created successfully!`);
