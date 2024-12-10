@@ -11,7 +11,12 @@
   </div>
 </template>
 
-<style scoped>
+<style>
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
 .containerCMMV {
   display: flex;
   justify-content: center;
@@ -100,11 +105,3 @@
   }
 }
 </style>
-
-<script setup lang="ts">
-import CmmvMixins from "./assets/rpc-mixins.js";
-
-defineOptions({
-  mixins: [CmmvMixins],
-});
-</script>
