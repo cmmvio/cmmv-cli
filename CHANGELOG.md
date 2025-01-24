@@ -1,3 +1,12 @@
+## [0.3.7](https://github.com/cmmvio/cmmv-cli/compare/v0.3.6...v0.3.7) (2025-01-24)
+
+
+### Bug Fixes
+
+* repository ([6f45de9](https://github.com/cmmvio/cmmv-cli/commit/6f45de9383e15b980b4e16c9070f3cd335e7ec2d))
+
+
+
 ## [0.3.6](https://github.com/cmmvio/cmmv-cli/compare/v0.3.5...v0.3.6) (2024-12-10)
 
 
