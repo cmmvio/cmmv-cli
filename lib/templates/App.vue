@@ -2,7 +2,7 @@
   <div class="containerCMMV">
     <div class="logo-container center" style="text-align: center;">
       <img
-        src="https://raw.githubusercontent.com/andrehrferreira/docs.cmmv.io/main/public/assets/logo_CMMV2_icon.png"
+        src="https://raw.githubusercontent.com/cmmvio/docs.cmmv.io/main/public/assets/logo_CMMV2_icon.png"
         alt="CMMV Logo"
         class="logo m-auto"
       />
