@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/cmmvio/cmmv-cli/compare/v0.3.7...v0.4.0) (2025-02-14)
+
+
+### Bug Fixes
+
+* scoped hello world ([f4e24a2](https://github.com/cmmvio/cmmv-cli/commit/f4e24a21480b62c8cc2489266a49607a65f4aa0e))
+
+
+### Features
+
+* manager pnpm, yarn, npm ([6310a48](https://github.com/cmmvio/cmmv-cli/commit/6310a486e34573aa899c7d6e67a3dd3460c01512))
+
+
+
 ## [0.3.7](https://github.com/cmmvio/cmmv-cli/compare/v0.3.6...v0.3.7) (2025-01-24)
 
 
