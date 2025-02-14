@@ -13,10 +13,17 @@ const createProject = async (args) => {
     console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
 
     const { 
-        projectName, vite, rpc, cache,
+        manager, projectName, vite, rpc, cache,
         repository, eslint, prettier, 
         vitest, additionalModules 
     } = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'manager',
+            message: '🗄️ Select package manager:',
+            choices: ['pnpm', 'yarn', 'npm'],
+            default: 'pnpm',
+        },
         {
             type: 'input',
             name: 'projectName',
@@ -90,12 +97,12 @@ const createProject = async (args) => {
 
     try {
         await configureProject({ 
-            projectName, vite, rpc, cache, repository,  
+            manager, projectName, vite, rpc, cache, repository,  
             eslint, prettier, vitest, additionalModules 
         });
 
         console.log(`\n🎉 Project "${projectName}" created successfully!`);
-        console.log(`\n✨ To get started:\n   📂 cd ${projectName}\n   ▶️  pnpm dev`);
+        console.log(`\n✨ To get started:\n   📂 cd ${projectName}\n   ▶️  ${manager} run dev`);
         console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
     } catch (error) {
         console.error(`❌ Error creating project: ${error.message}`);
@@ -107,9 +114,16 @@ const createModule = async (args) => {
     console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
 
     const { 
-        moduleName, additionalModules, author,
+        manager, moduleName, additionalModules, author,
         eslint, prettier, vitest, release
     } = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'manager',
+            message: '🗄️ Select package manager:',
+            choices: ['pnpm', 'yarn', 'npm'],
+            default: 'pnpm',
+        },
         {
             type: 'input',
             name: 'moduleName',
@@ -156,12 +170,12 @@ const createModule = async (args) => {
 
     try {
         await configureModule({ 
-            moduleName, eslint, prettier, vitest, 
+            manager, moduleName, eslint, prettier, vitest, 
             additionalModules, release, author
         });
 
         console.log(`\n🎉 Module "${moduleName}" created successfully!`);
-        console.log(`\n✨ To get started:\n   📂 cd ${moduleName}\n   ▶️  pnpm build`);
+        console.log(`\n✨ To get started:\n   📂 cd ${moduleName}\n   ▶️  ${manager} run build`);
         console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
     } catch (error) {
         console.error(`❌ Error creating module: ${error.message}`);
@@ -372,6 +386,11 @@ yargs(hideBin(process.argv))
         'create',
         'Create a new CMMV project',
         {
+            manager: {
+                type: 'string',
+                describe: 'Package manager',
+                default: 'pnpm',
+            },
             projectName: {
                 type: 'string',
                 describe: 'Name of the project',
@@ -426,6 +445,11 @@ yargs(hideBin(process.argv))
         'module',
         'Create a new CMMV module',
         {
+            manager: {
+                type: 'string',
+                describe: 'Package manager',
+                default: 'pnpm',
+            },
             moduleName: {
                 type: 'string',
                 describe: 'Name of the module',
