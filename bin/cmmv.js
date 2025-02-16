@@ -10,6 +10,7 @@ import {
     execDevMode,
     execBuild,
     execStart,
+    execRun,
     releaseScript
 } from '../lib/commands/index.js';
 
@@ -251,6 +252,29 @@ yargs(hideBin(process.argv))
                 })
         },
         execStart
+    )
+    .command(
+        'run <filename>',
+        'Run star script',
+        yargs => {
+            return yargs
+                .positional('filename', {
+                    type: 'string',
+                    describe: 'Path to main file',
+                    demandOption: true,
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+        },
+        execRun
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
