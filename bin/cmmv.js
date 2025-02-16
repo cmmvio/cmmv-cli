@@ -2,90 +2,15 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import inquirer from 'inquirer';
-
-import { 
-    configureModule,
-    configureContract, configureTesting
- } from '../lib/helpers.js';
 
 import {
-    createProject
-} from '../lib/create-project.command.js';
+    createProject,
+    createModule,
+    execDevMode,
+    execBuild
+} from '../lib/commands/index.js';
 
-const createModule = async (args) => {
-    console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
-
-    const { 
-        manager, moduleName, additionalModules, author,
-        eslint, prettier, vitest, release
-    } = await inquirer.prompt([
-        {
-            type: 'list',
-            name: 'manager',
-            message: '🗄️ Select package manager:',
-            choices: ['pnpm', 'yarn', 'npm'],
-            default: 'pnpm',
-        },
-        {
-            type: 'input',
-            name: 'moduleName',
-            message: '📦 Enter the module name:',
-            default: args.moduleName,
-        },
-        {
-            type: 'input',
-            name: 'author',
-            message: '✍️ Enter author name:',
-            default: args.author,
-        },
-        {
-            type: 'checkbox',
-            name: 'additionalModules',
-            message: '📦 Select additional CMMV modules to include:',
-            choices: [
-                { name: 'Core', value: 'core', 'checked': true },
-                { name: 'Http', value: 'http' },
-                { name: 'Encryptor', value: 'encryptor' },
-            ],
-        },
-        {
-            type: 'confirm',
-            name: 'eslint',
-            message: '🔍 Add Eslint?',
-            default: args.eslint,
-        },
-        {
-            type: 'confirm',
-            name: 'prettier',
-            message: '🖌️ Add Prettier?',
-            default: args.prettier,
-        },
-        {
-            type: 'confirm',
-            name: 'release',
-            message: '✨ Add Release Script?',
-            default: args.release,
-        },
-    ]);
-
-    console.log(`\n🚀 Initializing module "${moduleName}"...`);
-
-    try {
-        await configureModule({ 
-            manager, moduleName, eslint, prettier, vitest, 
-            additionalModules, release, author
-        });
-
-        console.log(`\n🎉 Module "${moduleName}" created successfully!`);
-        console.log(`\n✨ To get started:\n   📂 cd ${moduleName}\n   ▶️  ${manager} run build`);
-        console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
-    } catch (error) {
-        console.error(`❌ Error creating module: ${error.message}`);
-        console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
-    }
-};
-
+/*
 const createContract = async (args) => {
     console.log(`✨ Welcome to the CMMV Contract Generator! ✨`);
 
@@ -282,7 +207,7 @@ const createTesting = async (args) => {
         console.error(`❌ Error creating testing: ${error.message}`);
         console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
     }
-};
+};*/
 
 yargs(hideBin(process.argv))
     .command(
@@ -339,47 +264,108 @@ yargs(hideBin(process.argv))
         }
     )
     .command(
-        'module',
+        'module <moduleName>',
         'Create a new CMMV module',
-        {
-            manager: {
-                type: 'string',
-                describe: 'Package manager',
-                default: 'pnpm',
-            },
-            moduleName: {
-                type: 'string',
-                describe: 'Name of the module',
-                default: 'my-module',
-            },
-            author: {
-                type: 'string',
-                describe: 'Author of the module',
-                default: 'Anonymous',
-            },
-            eslint: {
-                type: 'boolean',
-                describe: 'Add Eslint',
-                default: true,
-            },
-            prettier: {
-                type: 'boolean',
-                describe: 'Add Prettier',
-                default: true,
-            },
-            vitest: {
-                type: 'boolean',
-                describe: 'Add Vitest',
-                default: true,
-            },
-            release: {
-                type: 'boolean',
-                describe: 'Add Release Script',
-                default: true,
-            },
+        yargs => {
+            return yargs
+                .positional('moduleName', {
+                    type: 'string',
+                    describe: 'Name of the module',
+                    demandOption: true,
+                })
+                .option('manager', {
+                    type: 'string',
+                    describe: 'Package manager',
+                    default: 'pnpm',
+                })
         },
-        createModule
+        argv => {
+            if (!argv.moduleName) {
+                console.error('❌ Error: You must provide a module name.');
+                process.exit(1);
+            }
+
+            createModule(argv);
+        }
     )
+    .command(
+        'dev',
+        'Run application in dev mode',
+        yargs => {
+            return yargs
+                .option('pathMain', {
+                    type: 'string',
+                    describe: 'Path to main.ts',
+                    default: "./src/main.ts"
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+                .option('watch', {
+                    type: 'boolean',
+                    describe: 'Watch mode',
+                    default: true,
+                })
+                .option('debug', {
+                    type: 'boolean',
+                    describe: 'Debug informations',
+                    default: false,
+                })
+        },
+        execDevMode
+    )
+    .command(
+        'build',
+        'Run build application',
+        yargs => {
+            return yargs
+                .option('mode', {
+                    type: 'string',
+                    describe: 'Build mode: tsc (TypeScript Compiler) or swc (Speedy Web Compiler)',
+                    choices: ['tsc', 'swc'],
+                    default: 'tsc'
+                })
+                .option('basePath', {
+                    type: 'string',
+                    describe: 'Path to source files',
+                    default: "./src"
+                })
+                .option('outPath', {
+                    type: 'string',
+                    describe: 'Path to out files',
+                    default: "./dist"
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+                .option('watch', {
+                    type: 'boolean',
+                    describe: 'Watch mode',
+                    default: true,
+                })
+                .option('debug', {
+                    type: 'boolean',
+                    describe: 'Debug informations',
+                    default: false,
+                })
+        },
+        execBuild
+    )
+    /*
     .command(
         'contract',
         'Create a new CMMV contract',
@@ -428,7 +414,7 @@ yargs(hideBin(process.argv))
             },
         },
         createTesting
-    )
+    )*/
     .demandCommand(1, 'You need to provide a valid command')
     .help()
     .argv;
