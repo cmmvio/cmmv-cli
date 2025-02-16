@@ -1,3 +1,12 @@
+## [0.5.8](https://github.com/cmmvio/cmmv-cli/compare/v0.5.7...v0.5.8) (2025-02-16)
+
+
+### Bug Fixes
+
+* eslint config ([6f70df3](https://github.com/cmmvio/cmmv-cli/commit/6f70df37465785d61023bf83b2c1afa89007f1ae))
+
+
+
 ## [0.5.7](https://github.com/cmmvio/cmmv-cli/compare/v0.5.6...v0.5.7) (2025-02-16)
 
 
