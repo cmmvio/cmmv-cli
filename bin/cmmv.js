@@ -11,6 +11,7 @@ import {
     execBuild,
     execStart,
     execRun,
+    execLint,
     releaseScript
 } from '../lib/commands/index.js';
 
@@ -255,7 +256,7 @@ yargs(hideBin(process.argv))
     )
     .command(
         'run <filename>',
-        'Run star script',
+        'Run start script',
         yargs => {
             return yargs
                 .positional('filename', {
@@ -275,6 +276,24 @@ yargs(hideBin(process.argv))
                 })
         },
         execRun
+    )
+    .command(
+        'lint',
+        'Run eslint',
+        yargs => {
+            return yargs
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('pattern', {
+                    type: 'string',
+                    describe: 'Pattern to lint files',
+                    default: "\"src/**/*.ts\""
+                })
+        },
+        execLint
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
