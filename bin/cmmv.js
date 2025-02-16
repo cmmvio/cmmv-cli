@@ -290,7 +290,7 @@ yargs(hideBin(process.argv))
                 .option('pattern', {
                     type: 'string',
                     describe: 'Pattern to lint files',
-                    default: "\"src/**/*.ts\""
+                    default: "src/**/*.ts"
                 })
         },
         execLint
