@@ -9,7 +9,8 @@ import {
     createContract,
     execDevMode,
     execBuild,
-    releaseBuild
+    execStart,
+    releaseScript
 } from '../lib/commands/index.js';
 
 yargs(hideBin(process.argv))
@@ -226,7 +227,30 @@ yargs(hideBin(process.argv))
                     default: "./package.json"
                 })
         },
-        releaseBuild
+        releaseScript
+    )
+    .command(
+        'start',
+        'Run star script',
+        yargs => {
+            return yargs
+                .option('mainPath', {
+                    type: 'string',
+                    describe: 'Path to main.ts',
+                    default: "./src/main.ts"
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+        },
+        execStart
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
