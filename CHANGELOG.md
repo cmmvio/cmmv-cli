@@ -1,3 +1,12 @@
+## [0.5.5](https://github.com/cmmvio/cmmv-cli/compare/v0.5.4...v0.5.5) (2025-02-16)
+
+
+### Features
+
+* lint command ([b8181be](https://github.com/cmmvio/cmmv-cli/commit/b8181be8f4a65709340726613450b017296405e1))
+
+
+
 ## [0.5.4](https://github.com/cmmvio/cmmv-cli/compare/v0.5.3...v0.5.4) (2025-02-16)
 
 
