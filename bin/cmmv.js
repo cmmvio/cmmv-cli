@@ -5,110 +5,13 @@ import { hideBin } from 'yargs/helpers';
 import inquirer from 'inquirer';
 
 import { 
-    configureProject, configureModule,
+    configureModule,
     configureContract, configureTesting
  } from '../lib/helpers.js';
 
-const createProject = async (args) => {
-    console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
-
-    const { 
-        manager, projectName, vite, rpc, cache,
-        repository, eslint, prettier, 
-        vitest, additionalModules 
-    } = await inquirer.prompt([
-        {
-            type: 'list',
-            name: 'manager',
-            message: '🗄️ Select package manager:',
-            choices: ['pnpm', 'yarn', 'npm'],
-            default: 'pnpm',
-        },
-        {
-            type: 'input',
-            name: 'projectName',
-            message: '📦 Enter the project name:',
-            default: args.projectName,
-        },
-        {
-            type: 'confirm',
-            name: 'vite',
-            message: '⚡ Enable Vite Middleware?',
-            default: args.vite,
-        },
-        {
-            type: 'confirm',
-            name: 'rpc',
-            message: '🔌 Enable RPC (WebSocket)?',
-            default: args.rpc,
-        },
-        {
-            type: 'list',
-            name: 'repository',
-            message: '🗄️ Select repository type:',
-            choices: ['Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
-            default: args.repository,
-        },
-        {
-            type: 'confirm',
-            name: 'cache',
-            message: '🧳 Enable Cache module?',
-            default: args.cache,
-        },
-        {
-            type: 'checkbox',
-            name: 'additionalModules',
-            message: '📦 Select additional CMMV modules to include:',
-            choices: [
-                { name: 'Auth', value: 'auth' },
-                { name: 'Cache', value: 'cache' },
-                { name: 'Elastic (Beta)', value: 'elastic' },
-                { name: 'Encryptor', value: 'encryptor' },
-                { name: 'Events (Beta)', value: 'events' },
-                { name: 'Inspector', value: 'inspector' },
-                { name: 'Keyv', value: 'keyv' },
-                { name: 'Normalizer (Beta)', value: 'normalizer' },
-                { name: 'Queue (Beta)', value: 'queue' },
-                { name: 'Scheduling', value: 'scheduling' },
-                { name: 'Testing (Beta)', value: 'testing' }
-            ],
-        },
-        {
-            type: 'confirm',
-            name: 'eslint',
-            message: '🔍 Add Eslint ?',
-            default: args.eslint,
-        },
-        {
-            type: 'confirm',
-            name: 'prettier',
-            message: '🖌️ Add Prettier?',
-            default: args.prettier,
-        },
-        {
-            type: 'confirm',
-            name: 'vitest',
-            message: '🧪 Add Vitest?',
-            default: args.vitest,
-        },
-    ]);
-
-    console.log(`\n🚀 Initializing project "${projectName}"...`);
-
-    try {
-        await configureProject({ 
-            manager, projectName, vite, rpc, cache, repository,  
-            eslint, prettier, vitest, additionalModules 
-        });
-
-        console.log(`\n🎉 Project "${projectName}" created successfully!`);
-        console.log(`\n✨ To get started:\n   📂 cd ${projectName}\n   ▶️  ${manager} run dev`);
-        console.log(`\n📖 For more information and documentation, visit: https://cmmv.io/docs`);
-    } catch (error) {
-        console.error(`❌ Error creating project: ${error.message}`);
-        console.log(`\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`);
-    }
-};
+import {
+    createProject
+} from '../lib/create-project.command.js';
 
 const createModule = async (args) => {
     console.log(`✨ Welcome to the CMMV Project Initializer! ✨`);
@@ -383,63 +286,57 @@ const createTesting = async (args) => {
 
 yargs(hideBin(process.argv))
     .command(
-        'create',
+        'create <projectName>',
         'Create a new CMMV project',
-        {
-            manager: {
-                type: 'string',
-                describe: 'Package manager',
-                default: 'pnpm',
-            },
-            projectName: {
-                type: 'string',
-                describe: 'Name of the project',
-                default: 'my-project',
-            },
-            vite: {
-                type: 'boolean',
-                describe: 'Enable Vite Middleware',
-                default: true,
-            },
-            rpc: {
-                type: 'boolean',
-                describe: 'Enable RPC (WebSocket)',
-                default: true,
-            },
-            repository: {
-                type: 'string',
-                choices: ['Sqlite', 'MongoDB', 'PostgreSQL', 'MySQL', 'MsSQL', 'Oracle'],
-                describe: 'Repository type',
-                default: 'Sqlite',
-            },
-            cache: {
-                type: 'boolean',
-                describe: 'Enable Cache module',
-                default: true,
-            },
-            view: {
-                type: 'string',
-                choices: ['Reactivity', 'Vue3', 'Vue3 + TailwindCSS'],
-                describe: 'View configuration',
-                default: 'Vue3 + TailwindCSS',
-            },
-            eslint: {
-                type: 'boolean',
-                describe: 'Add Eslint',
-                default: true,
-            },
-            prettier: {
-                type: 'boolean',
-                describe: 'Add Prettier',
-                default: true,
-            },
-            vitest: {
-                type: 'boolean',
-                describe: 'Add Vitest',
-                default: true,
-            },
+        yargs => {
+            return yargs
+                .positional('projectName', {
+                    type: 'string',
+                    describe: 'Name of the project',
+                    demandOption: true,
+                })
+                .option('manager', {
+                    type: 'string',
+                    describe: 'Package manager',
+                    default: 'pnpm',
+                })
+                .option('rpc', {
+                    type: 'boolean',
+                    describe: 'Enable RPC',
+                    default: true,
+                })
+                .option('repository', {
+                    type: 'string',
+                    choices: ['none', 'sqlite', 'mongodb', 'postgresql', 'mysql', 'mssql', 'oracle'],
+                    describe: 'Repository type',
+                    default: 'none',
+                })
+                .option('cache', {
+                    type: 'string',
+                    choices: ['none', 'redis', 'memcached', 'mongodb', 'filesystem'],
+                    describe: 'Cache type',
+                    default: 'none',
+                })
+                .option('queue', {
+                    type: 'string',
+                    choices: ['none', 'redis', 'rabbitmq', 'kafka'],
+                    describe: 'Queue type',
+                    default: 'none',
+                })
+                .option('vitest', {
+                    type: 'boolean',
+                    describe: 'Add Vitest',
+                    default: true,
+                });
         },
-        createProject
+        argv => {
+            if (!argv.projectName) {
+                console.error('❌ Error: You must provide a project name.');
+                process.exit(1);
+            }
+
+            createProject(argv);
+        }
     )
     .command(
         'module',
