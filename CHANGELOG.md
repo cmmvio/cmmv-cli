@@ -1,3 +1,13 @@
+## [0.5.7](https://github.com/cmmvio/cmmv-cli/compare/v0.5.6...v0.5.7) (2025-02-16)
+
+
+### Bug Fixes
+
+* remove release-it ([3c08719](https://github.com/cmmvio/cmmv-cli/commit/3c0871914fe79c81ff9300083f839627eee8e11f))
+* remove release-it ([65f8d91](https://github.com/cmmvio/cmmv-cli/commit/65f8d91babb5d314a148af0ea32433e23261a1a9))
+
+
+
 ## [0.5.6](https://github.com/cmmvio/cmmv-cli/compare/v0.5.5...v0.5.6) (2025-02-16)
 
 
