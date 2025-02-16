@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/cmmvio/cmmv-cli/compare/v0.5.0...v0.5.1) (2025-02-16)
+
+
+### Bug Fixes
+
+* move dev dependecies ([d295826](https://github.com/cmmvio/cmmv-cli/commit/d295826705193082e08aaf3b52e7b73e1d125279))
+
+
+
 # [0.5.0](https://github.com/cmmvio/cmmv-cli/compare/v0.4.0...v0.5.0) (2025-02-16)
 
 
