@@ -8,7 +8,8 @@ import {
     createModule,
     createContract,
     execDevMode,
-    execBuild
+    execBuild,
+    releaseBuild
 } from '../lib/commands/index.js';
 
 yargs(hideBin(process.argv))
@@ -203,6 +204,29 @@ yargs(hideBin(process.argv))
                 })
         },
         execBuild
+    )
+    .command(
+        'release',
+        'Run release script',
+        yargs => {
+            return yargs
+                .option('manager', {
+                    type: 'string',
+                    describe: 'Package manager',
+                    default: 'pnpm',
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+        },
+        releaseBuild
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()

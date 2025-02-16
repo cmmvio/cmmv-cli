@@ -34,6 +34,9 @@
     "homepage": "https://github.com/cmmvio/cmmv-cli#readme",
     "dependencies": {
         "@cmmv/core": "^0.8.18",
+        "@commitlint/cli": "^19.7.1",
+        "@commitlint/config-angular": "^19.7.1",
+        "@commitlint/config-conventional": "^19.7.1",
         "@swc-node/core": "^1.13.3",
         "@swc-node/register": "^1.10.9",
         "@swc/cli": "^0.6.0",
