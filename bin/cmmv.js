@@ -237,8 +237,8 @@ yargs(hideBin(process.argv))
             return yargs
                 .option('mainPath', {
                     type: 'string',
-                    describe: 'Path to main.ts',
-                    default: "./src/main.ts"
+                    describe: 'Path to main.js',
+                    default: "./dist/main.js"
                 })
                 .option('tsConfigPath', {
                     type: 'string',
