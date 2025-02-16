@@ -1,3 +1,13 @@
+## [0.5.2](https://github.com/cmmvio/cmmv-cli/compare/v0.5.1...v0.5.2) (2025-02-16)
+
+
+### Features
+
+* command run ([2d2ba7c](https://github.com/cmmvio/cmmv-cli/commit/2d2ba7cb2a505617126667a7634d9dde412639e5))
+* command start ([3b97938](https://github.com/cmmvio/cmmv-cli/commit/3b979386ba0130759432e60892ee5fc4099cd4ae))
+
+
+
 ## [0.5.1](https://github.com/cmmvio/cmmv-cli/compare/v0.5.0...v0.5.1) (2025-02-16)
 
 
