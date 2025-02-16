@@ -1,8 +1,9 @@
 const eslint = require('@eslint/js');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const tseslint = require("@typescript-eslint/eslint-plugin");
+const tsparser = require("@typescript-eslint/parser");
 const prettier = require("eslint-plugin-prettier");
-const globals = require("globals")
+const globals = require("globals");
 
 module.exports = [
     {
@@ -12,11 +13,16 @@ module.exports = [
     eslintPluginPrettierRecommended,
     {
         languageOptions: {
-            ecmaVersion: 5,
+            ecmaVersion: "latest",
             sourceType: 'module',
+            parser: tsparser,
             parserOptions: {
                 projectService: true,
                 tsconfigRootDir: __dirname,
+                sourceType: "module",
+                ecmaFeatures: {
+                    experimentalDecorators: true,
+                },
             },
             globals: {
                 ...globals.node,
@@ -25,7 +31,7 @@ module.exports = [
         },
         files: ["src/**/*.ts", "apps/**/*.ts", "libs/**/*.ts", "test/**/*.ts"],
         ignores: [
-            "node_modules", "dist", "build", ".generated", 
+            "node_modules", "dist", "build", ".generated",
             "eslint.config.cjs", "eslint.config.mjs"
         ],
         plugins: {
