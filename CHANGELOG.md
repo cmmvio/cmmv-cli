@@ -1,3 +1,17 @@
+# [0.5.0](https://github.com/cmmvio/cmmv-cli/compare/v0.4.0...v0.5.0) (2025-02-16)
+
+
+### Bug Fixes
+
+* contract ([a78f09a](https://github.com/cmmvio/cmmv-cli/commit/a78f09a1819f185c4141e9538e704434d400476e))
+
+
+### Features
+
+* build module ([efa1c57](https://github.com/cmmvio/cmmv-cli/commit/efa1c57feafd60df2b8d39dcfb691ee1df9f06f4))
+
+
+
 # [0.4.0](https://github.com/cmmvio/cmmv-cli/compare/v0.3.7...v0.4.0) (2025-02-14)
 
 
