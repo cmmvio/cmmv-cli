@@ -1,3 +1,12 @@
+## [0.5.9](https://github.com/cmmvio/cmmv-cli/compare/v0.5.8...v0.5.9) (2025-02-17)
+
+
+### Bug Fixes
+
+* module build ([cb6b45d](https://github.com/cmmvio/cmmv-cli/commit/cb6b45df438065d3155dbb57c8493cdbe848f1d6))
+
+
+
 ## [0.5.8](https://github.com/cmmvio/cmmv-cli/compare/v0.5.7...v0.5.8) (2025-02-16)
 
 
