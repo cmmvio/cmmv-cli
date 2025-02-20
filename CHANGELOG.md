@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/cmmvio/cmmv-cli/compare/v0.5.9...v0.6.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* watch, include beforeStart ([2c591cf](https://github.com/cmmvio/cmmv-cli/commit/2c591cfa9464f0b10715c2476f7400f548ccee42))
+
+
+
 ## [0.5.9](https://github.com/cmmvio/cmmv-cli/compare/v0.5.8...v0.5.9) (2025-02-17)
 
 
