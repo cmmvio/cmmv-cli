@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/cmmvio/cmmv-cli/compare/v0.6.0...v0.6.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* beforeStart ([0091b10](https://github.com/cmmvio/cmmv-cli/commit/0091b10c41e973eecd7d36d9b4b2cc1d0b65349b))
+
+
+
 # [0.6.0](https://github.com/cmmvio/cmmv-cli/compare/v0.5.9...v0.6.0) (2025-02-20)
 
 
