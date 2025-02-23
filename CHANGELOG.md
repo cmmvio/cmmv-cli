@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/cmmvio/cmmv-cli/compare/v0.7.2...v0.7.3) (2025-02-23)
+
+
+### Bug Fixes
+
+* execa kill process ([a71de39](https://github.com/cmmvio/cmmv-cli/commit/a71de39f4e96dc67cbf83ade510d24f5b2025e31))
+
+
+
 ## [0.7.2](https://github.com/cmmvio/cmmv-cli/compare/v0.7.1...v0.7.2) (2025-02-23)
 
 
