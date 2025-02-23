@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/cmmvio/cmmv-cli/compare/v0.6.6...v0.7.0) (2025-02-23)
+
+
+### Bug Fixes
+
+* process return ([891e4d0](https://github.com/cmmvio/cmmv-cli/commit/891e4d0f75a21cc26e7bc6f95161561f17f8ca73))
+
+
+
 ## [0.6.6](https://github.com/cmmvio/cmmv-cli/compare/v0.6.5...v0.6.6) (2025-02-23)
 
 
