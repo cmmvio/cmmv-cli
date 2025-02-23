@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/cmmvio/cmmv-cli/compare/v0.7.1...v0.7.2) (2025-02-23)
+
+
+### Bug Fixes
+
+* child process ([51f54c2](https://github.com/cmmvio/cmmv-cli/commit/51f54c2fabed2f6dcbd4379ee4f8c08171d8b90a))
+
+
+
 ## [0.7.1](https://github.com/cmmvio/cmmv-cli/compare/v0.7.0...v0.7.1) (2025-02-23)
 
 
