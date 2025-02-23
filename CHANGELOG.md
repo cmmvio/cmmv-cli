@@ -1,3 +1,12 @@
+## [0.7.4](https://github.com/cmmvio/cmmv-cli/compare/v0.7.3...v0.7.4) (2025-02-23)
+
+
+### Bug Fixes
+
+* await process ([987e5c8](https://github.com/cmmvio/cmmv-cli/commit/987e5c8f12c351dd4a4ff50773dc6a1efc54101e))
+
+
+
 ## [0.7.3](https://github.com/cmmvio/cmmv-cli/compare/v0.7.2...v0.7.3) (2025-02-23)
 
 
