@@ -3,7 +3,7 @@ export const run = async (bin, args, opts = {}) => {
     const { execa } = await import('execa');
 
     try {
-        await execa(bin, args, { stdio: 'inherit', ...opts });
+        return await execa(bin, args, { stdio: 'inherit', ...opts });
     } catch (err) {
         console.error(chalk.red(`Error running command: ${bin} ${args.join(' ')}`));
         console.error(err.message);
