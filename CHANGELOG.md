@@ -1,3 +1,12 @@
+## [0.6.4](https://github.com/cmmvio/cmmv-cli/compare/v0.6.3...v0.6.4) (2025-02-23)
+
+
+### Bug Fixes
+
+* watcher timeout ([e225e93](https://github.com/cmmvio/cmmv-cli/commit/e225e93d6d58090bfd3f19c35faa26c05df219c6))
+
+
+
 ## [0.6.3](https://github.com/cmmvio/cmmv-cli/compare/v0.6.2...v0.6.3) (2025-02-22)
 
 
