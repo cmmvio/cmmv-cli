@@ -1,3 +1,12 @@
+## [0.6.6](https://github.com/cmmvio/cmmv-cli/compare/v0.6.5...v0.6.6) (2025-02-23)
+
+
+### Bug Fixes
+
+* kill process on restart ([c5f239c](https://github.com/cmmvio/cmmv-cli/commit/c5f239c7d19377c6aa0f396e5b2d55ca6c9c8c5e))
+
+
+
 ## [0.6.5](https://github.com/cmmvio/cmmv-cli/compare/v0.6.4...v0.6.5) (2025-02-23)
 
 
