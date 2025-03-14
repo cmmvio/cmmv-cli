@@ -1,3 +1,17 @@
+## [0.8.1](https://github.com/cmmvio/cmmv-cli/compare/v0.8.0...v0.8.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* indentity ([dabceb9](https://github.com/cmmvio/cmmv-cli/commit/dabceb90abf222f22b8bee1bbe145b93e05cca65))
+
+
+### Features
+
+* support window cmd ([045f774](https://github.com/cmmvio/cmmv-cli/commit/045f774b55883cda0992995130a85f142cd4d877))
+
+
+
 # [0.8.0](https://github.com/cmmvio/cmmv-cli/compare/v0.7.4...v0.8.0) (2025-03-14)
 
 
