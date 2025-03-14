@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/cmmvio/cmmv-cli/compare/v0.7.4...v0.8.0) (2025-03-14)
+
+
+### Features
+
+* vault, graphql, openapi ([13f6c09](https://github.com/cmmvio/cmmv-cli/commit/13f6c094f6558a21a90d698f10273e5ada8d80c9))
+
+
+
 ## [0.7.4](https://github.com/cmmvio/cmmv-cli/compare/v0.7.3...v0.7.4) (2025-02-23)
 
 
