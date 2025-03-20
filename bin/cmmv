@@ -12,7 +12,8 @@ import {
     execStart,
     execRun,
     execLint,
-    releaseScript
+    releaseScript,
+    installModules
 } from '../lib/commands/index.js';
 
 yargs(hideBin(process.argv))
@@ -294,6 +295,11 @@ yargs(hideBin(process.argv))
                 })
         },
         execLint
+    )
+    .command(
+        'install',
+        'Run install',
+        installModules
     )
     .demandCommand(1, 'You need to provide a valid command')
     .help()
