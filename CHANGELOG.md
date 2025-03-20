@@ -1,3 +1,12 @@
+## [0.8.2](https://github.com/cmmvio/cmmv-cli/compare/v0.8.1...v0.8.2) (2025-03-20)
+
+
+### Features
+
+* more modules, command install ([fa068ae](https://github.com/cmmvio/cmmv-cli/commit/fa068aed5325d6c9f1c224bad9ae9803bad39732))
+
+
+
 ## [0.8.1](https://github.com/cmmvio/cmmv-cli/compare/v0.8.0...v0.8.1) (2025-03-14)
 
 
