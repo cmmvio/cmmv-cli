@@ -1,3 +1,12 @@
+## [0.8.3](https://github.com/cmmvio/cmmv-cli/compare/v0.8.2...v0.8.3) (2025-03-24)
+
+
+### Bug Fixes
+
+* basic auth settings ([fb0492d](https://github.com/cmmvio/cmmv-cli/commit/fb0492d45cbd5f057352257e974d083402e29af8))
+
+
+
 ## [0.8.2](https://github.com/cmmvio/cmmv-cli/compare/v0.8.1...v0.8.2) (2025-03-20)
 
 
