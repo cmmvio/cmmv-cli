@@ -1,3 +1,12 @@
+## [0.8.4](https://github.com/cmmvio/cmmv-cli/compare/v0.8.3...v0.8.4) (2025-03-24)
+
+
+### Bug Fixes
+
+* watch directories ([5ad8075](https://github.com/cmmvio/cmmv-cli/commit/5ad80750c2a9298d9bd1a9dd58de0fb8207941fa))
+
+
+
 ## [0.8.3](https://github.com/cmmvio/cmmv-cli/compare/v0.8.2...v0.8.3) (2025-03-24)
 
 
