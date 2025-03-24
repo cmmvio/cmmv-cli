@@ -1,3 +1,12 @@
+## [0.8.5](https://github.com/cmmvio/cmmv-cli/compare/v0.8.4...v0.8.5) (2025-03-24)
+
+
+### Bug Fixes
+
+* sandbox module ([7fd22d6](https://github.com/cmmvio/cmmv-cli/commit/7fd22d64fb8f57b85ff69dbba7f7b1eebbf53fc9))
+
+
+
 ## [0.8.4](https://github.com/cmmvio/cmmv-cli/compare/v0.8.3...v0.8.4) (2025-03-24)
 
 
