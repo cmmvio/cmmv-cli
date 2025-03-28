@@ -1,3 +1,12 @@
+## [0.9.1](https://github.com/cmmvio/cmmv-cli/compare/v0.9.0...v0.9.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* npm-run-path ([e1ce67f](https://github.com/cmmvio/cmmv-cli/commit/e1ce67f10fbb9063cce4e40e604a6c2ec71a4b31))
+
+
+
 # [0.9.0](https://github.com/cmmvio/cmmv-cli/compare/v0.8.5...v0.9.0) (2025-03-28)
 
 
