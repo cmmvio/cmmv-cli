@@ -1,3 +1,12 @@
+# [0.9.0](https://github.com/cmmvio/cmmv-cli/compare/v0.8.5...v0.9.0) (2025-03-28)
+
+
+### Bug Fixes
+
+* restore-cursor version ([9c53ca0](https://github.com/cmmvio/cmmv-cli/commit/9c53ca049a65ce6eff710fc50e19c77c00df42e9))
+
+
+
 ## [0.8.5](https://github.com/cmmvio/cmmv-cli/compare/v0.8.4...v0.8.5) (2025-03-24)
 
 
