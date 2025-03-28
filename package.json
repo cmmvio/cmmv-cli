@@ -19,8 +19,8 @@
         "start"
     ],
     "scripts": {
-        "start": "node bin/cmmv.js",
-        "dev": "node bin/cmmv.js dev --watch --debug",
+        "start": "node bin/cmmv",
+        "dev": "node bin/cmmv dev --watch --debug",
         "release": "node release.js",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
     },
@@ -38,15 +38,15 @@
         "@commitlint/cli": "^19.8.0",
         "@commitlint/config-angular": "^19.8.0",
         "@commitlint/config-conventional": "^19.8.0",
-        "@eslint/eslintrc": "^3.3.0",
-        "@eslint/js": "^9.22.0",
+        "@eslint/eslintrc": "^3.3.1",
+        "@eslint/js": "^9.23.0",
         "@swc-node/core": "^1.13.3",
         "@swc-node/register": "^1.10.10",
         "@swc/cli": "^0.6.0",
-        "@swc/core": "^1.11.11",
+        "@swc/core": "^1.11.13",
         "@swc/helpers": "^0.5.15",
-        "@typescript-eslint/eslint-plugin": "^8.27.0",
-        "@typescript-eslint/parser": "^8.27.0",
+        "@typescript-eslint/eslint-plugin": "^8.28.0",
+        "@typescript-eslint/parser": "^8.28.0",
         "chalk": "^5.4.1",
         "chokidar": "^4.0.3",
         "commander": "^11.1.0",
@@ -57,7 +57,7 @@
         "esbuild": "^0.25.1",
         "esbuild-register": "^3.6.0",
         "eslint-config-prettier": "^10.1.1",
-        "eslint-plugin-prettier": "^5.2.3",
+        "eslint-plugin-prettier": "^5.2.5",
         "execa": "^9.5.2",
         "fs-extra": "^11.3.0",
         "husky": "^9.1.7",
@@ -65,6 +65,7 @@
         "lint-staged": "^15.5.0",
         "ora": "^6.3.1",
         "prettier": "^3.5.3",
+        "restore-cursor": "5.1.0",
         "semver": "^7.7.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
@@ -75,7 +76,7 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/inquirer": "^9.0.7",
-        "@types/node": "^20.17.24"
+        "@types/node": "^20.17.28"
     },
     "lint-staged": {
         "**/*.{ts,json}": [
@@ -87,6 +88,9 @@
         "onlyBuiltDependencies": [
             "@swc/core",
             "esbuild"
-        ]
+        ],
+        "overrides": {
+            "restore-cursor": "5.1.0"
+        }
     }
 }
