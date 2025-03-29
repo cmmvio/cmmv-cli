@@ -1,3 +1,12 @@
+## [0.9.2](https://github.com/cmmvio/cmmv-cli/compare/v0.9.1...v0.9.2) (2025-03-29)
+
+
+### Bug Fixes
+
+* ora ([670eb14](https://github.com/cmmvio/cmmv-cli/commit/670eb1432044b2881fb7393d5eb90bbb2c77d3e1))
+
+
+
 ## [0.9.1](https://github.com/cmmvio/cmmv-cli/compare/v0.9.0...v0.9.1) (2025-03-28)
 
 
