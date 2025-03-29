@@ -1,5 +1,6 @@
+
 export const run = async (bin, args, opts = {}, awaitProcess = false) => {
-    const { execa } = await import('execa');
+    const execa = require('execa');
 
     try {
         if(!awaitProcess){

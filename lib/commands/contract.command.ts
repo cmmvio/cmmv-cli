@@ -79,7 +79,7 @@ export const createContract = async (args) => {
         ]);
     }
 
-    const fields = [];
+    const fields: Array<any> = [];
     let addField = true;
 
     while (addField) {

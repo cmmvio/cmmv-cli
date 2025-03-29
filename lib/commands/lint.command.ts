@@ -1,4 +1,4 @@
-import path from 'node:path';
+import * as path from 'node:path';
 import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';

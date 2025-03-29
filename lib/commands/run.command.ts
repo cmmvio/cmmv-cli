@@ -1,12 +1,12 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';
 
-export const execStart = async (args) => {
+export const execRun = async (args) => {
     const logger = new Logger('CLI');
-    const absoluteMainPath = path.resolve(process.cwd(), args.mainPath);
+    const absoluteFilename = path.resolve(process.cwd(), args.filename);
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
     const packagePath = path.resolve(process.cwd(), args.packagePath);
 
@@ -20,18 +20,11 @@ export const execStart = async (args) => {
         return;
     }
 
-    if (args.debug) {
-        logger.verbose(`Running script: ${absoluteMainPath}`);
-        logger.verbose(`Using tsconfig: ${tsConfigPath}`);
-    }
-
     try {
-        if (args.debug) logger.verbose(`Start process: node ${absoluteMainPath}`);
-
-        await run('node', [absoluteMainPath], {
+        await run('node', ['-r', '@swc-node/register', absoluteFilename], {
             env: {
                 TS_NODE_PROJECT: tsConfigPath,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'dev',
                 ...process.env,
             },
             stdio: 'inherit',

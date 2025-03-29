@@ -1,11 +1,16 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { execa } from 'execa';
+import ora from 'ora';
 
 export const configureModule = async ({
     manager,
     moduleName,
-    additionalModules = [],
+    additionalModules = []
+}: {
+    manager: string,
+    moduleName: string,
+    additionalModules: Array<string>
 }) => {
     const cwdPath = path.resolve(process.cwd());
     const modulePath = path.resolve(process.cwd(), moduleName);
@@ -33,7 +38,6 @@ export const configureModule = async ({
         console.log('✔ Added Encryptor module.');
     }
 
-    const ora = await import('ora');
     const spinner = ora('Installing dependencies...').start();
 
     try {

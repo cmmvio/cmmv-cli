@@ -1,13 +1,17 @@
-import path from 'node:path';
+import * as path from 'node:path';
 import { execa } from 'execa';
+import ora from 'ora';
 
 export const installModuleAction = async ({
     manager,
     additionalModules = []
+}: {
+    manager: string,
+    additionalModules: Array<string>
 }) => {
-    const projectPath = path.resolve(process.cwd(), projectName);
+    const projectPath = path.resolve(process.cwd());
 
-    const modules = [];
+    const modules: string[] = [];
 
     if (additionalModules.includes('sandbox')) {
         modules.push('@cmmv/sandbox');
@@ -109,7 +113,6 @@ export const installModuleAction = async ({
         console.log('✔ Added Protobuf module.');
     }
 
-    const ora = await import('ora');
     const spinner = ora('Installing dependencies...').start();
 
     try {

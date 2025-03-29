@@ -10,7 +10,7 @@
         "node": ">=16.14"
     },
     "bin": {
-        "cmmv": "bin/cmmv"
+        "cmmv": "dist/bin/cmmv.js"
     },
     "keywords": [
         "cmmv",
@@ -18,11 +18,23 @@
         "npx",
         "start"
     ],
+    "files": [
+        "dist",
+        "bin",
+        "README.md",
+        "LICENSE"
+    ],
     "scripts": {
-        "start": "node bin/cmmv",
-        "dev": "node bin/cmmv dev --watch --debug",
+        "build": "tsc",
+        "clean": "find ./lib -type f \\( -name '*.d.ts' -o -name '*.js' \\) -exec rm -f {} +",
+        "start": "node dist/bin/cmmv.js",
+        "dev": "node dist/bin/cmmv dev --watch --debug",
         "release": "node release.js",
-        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+        "prepack": "npm run build",
+        "prepublish:npm": "npm run build",
+        "publish:npm": "npm publish --access public",
+        "prerelease": "npm run build"
     },
     "repository": {
         "type": "git",

@@ -43,14 +43,14 @@ export const installModules = async (args) => {
         }
     ]);
 
-    console.log(`\n🚀 Initializing project "${projectName}"...`);
+    console.log(`\n🚀 Initializing modules...`);
 
     try {
         await installModuleAction({ manager, additionalModules });
-        console.log(`\n🎉 Project "${projectName}" created successfully!`);
+        console.log(`\n🎉 Modules installed successfully!`);
     } catch (error) {
         console.log(error);
-        console.error(`❌ Error creating project: ${error.message}`);
+        console.error(`❌ Error installing modules: ${error.message}`);
         console.log(
             `\n📖 Visit https://cmmv.io/docs for troubleshooting and detailed setup instructions.`,
         );

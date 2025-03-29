@@ -1,13 +1,13 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import chokidar from 'chokidar';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import * as chokidar from 'chokidar';
 import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';
 
-let childProcess = null;
-let watcher = null;
-let restartTimeout = null;
+let childProcess: any = null;
+let watcher: any = null;
+let restartTimeout: any = null;
 
 const RESTART_DELAY = 1000;
 
@@ -65,7 +65,7 @@ export const execDevMode = async (args) => {
 
         if (args.watch) {
             setTimeout(async () => {
-                if (watcher) await watcher.close();
+                if (watcher) await watcher?.close();
 
                 logger.verbose(
                     `Start file change watcher`,
@@ -93,7 +93,8 @@ export const execDevMode = async (args) => {
 
                     if (restartTimeout) clearTimeout(restartTimeout);
 
-                    await watcher.close();
+                    if (watcher)
+                        await watcher?.close();
 
                     restartTimeout = setTimeout(() => {
                         execDevMode(args);

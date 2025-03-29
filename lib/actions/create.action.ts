@@ -1,6 +1,7 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { execa } from 'execa';
+import ora from 'ora';
 
 export const configureProject = async ({
     manager,
@@ -11,6 +12,15 @@ export const configureProject = async ({
     repository,
     queue,
     additionalModules = [],
+}: {
+    manager: string,
+    projectName: string,
+    sandbox: boolean,
+    rpc: boolean,
+    cache: string,
+    repository: string,
+    queue: string,
+    additionalModules: Array<string>
 }) => {
     const cwdPath = path.resolve(process.cwd());
     const projectPath = path.resolve(process.cwd(), projectName);
@@ -31,10 +41,10 @@ export const configureProject = async ({
 
     let mainImports = `import { Application } from '@cmmv/core';\n
 import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';\n`;
-    const mainModules = ['DefaultHTTPModule'];
-    const mainProviders = [];
-    const modules = ['@cmmv/core', '@cmmv/testing', '@cmmv/http'];
-    const devModules = ['@cmmv/cli'];
+    const mainModules: Array<string> = ['DefaultHTTPModule'];
+    const mainProviders: Array<string> = [];
+    const modules: Array<string> = ['@cmmv/core', '@cmmv/testing', '@cmmv/http'];
+    const devModules: Array<string> = ['@cmmv/cli'];
 
     if (sandbox) {
         modules.push('@cmmv/sandbox');
@@ -377,8 +387,6 @@ Application.create({
     });
 
     console.log('✔ Created src/main.ts.');
-
-    const ora = await import('ora');
     const spinner = ora('Installing dependencies...').start();
 
     try {

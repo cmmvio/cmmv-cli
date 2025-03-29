@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';
@@ -59,12 +59,13 @@ export const execBuild = async (args) => {
             if (isModule) {
                 console.error('To build the module it is necessary to use TSC mode');
             } else {
-                if (args.debug)
+                const tmpDir = `.pm${new Date().getTime()}`;
+
+                if (args.debug){
                     console.log(
                         `Compile: swc ${basePath} --out-dir=${tmpDir} --ignore=**/*.spec.ts ${buildArgs.slice(1).join(' ')}`,
                     );
-
-                const tmpDir = `.pm${new Date().getTime()}`;
+                }
 
                 await run(
                     'swc',

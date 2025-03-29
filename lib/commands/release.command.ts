@@ -1,6 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { Logger } from '@cmmv/core';
+
+import chalk from 'chalk';
+import * as enquirer from 'enquirer';
+import * as semver from 'semver';
 
 import { run } from '../utils/exec.util.js';
 
@@ -25,12 +29,6 @@ export const releaseScript = async (args) => {
         stdio: 'inherit',
     });
 
-    //Release
-    const chalk = (await import('chalk')).default;
-    const semver = await import('semver');
-    const enquirer = (await import('enquirer')).default;
-    const { prompt } = enquirer;
-
     const currentVersion = JSON.parse(
         fs.readFileSync(packagePath, 'utf-8'),
     ).version;
@@ -43,7 +41,7 @@ export const releaseScript = async (args) => {
 
     try {
         // Prompt release type
-        const { release } = await prompt({
+        const result: any = await enquirer.prompt({
             type: 'select',
             name: 'release',
             message: 'Select release type:',
@@ -52,29 +50,29 @@ export const releaseScript = async (args) => {
                 .concat(['custom']),
         });
 
-        if (release === 'custom') {
-            const { version } = await prompt({
+        if (result.release === 'custom') {
+            const resultVersion: any = await enquirer.prompt({
                 type: 'input',
                 name: 'version',
                 message: 'Input custom version:',
                 initial: currentVersion,
             });
-            targetVersion = version;
+            targetVersion = resultVersion.version;
         } else {
-            targetVersion = release.match(/\((.*)\)/)[1];
+            targetVersion = result.release.match(/\((.*)\)/)[1];
         }
 
         if (!semver.valid(targetVersion))
             throw new Error(`Invalid target version: ${targetVersion}`);
 
         // Confirm release
-        const { yes: tagOk } = await prompt({
+        const resultTag: any = await enquirer.prompt({
             type: 'confirm',
             name: 'yes',
             message: `Releasing v${targetVersion}. Confirm?`,
         });
 
-        if (!tagOk) {
+        if (!resultTag.yes) {
             console.log(chalk.yellow('Release canceled.'));
             return;
         }
@@ -87,13 +85,13 @@ export const releaseScript = async (args) => {
         step('\nGenerating the changelog...');
         await run('pnpm', ['run', 'changelog']);
 
-        const { yes: changelogOk } = await prompt({
+        const resultChangelog: any = await enquirer.prompt({
             type: 'confirm',
             name: 'yes',
             message: `Changelog generated. Does it look good?`,
         });
 
-        if (!changelogOk) {
+        if (!resultChangelog.yes) {
             console.log(chalk.yellow('Release canceled after changelog review.'));
             return;
         }

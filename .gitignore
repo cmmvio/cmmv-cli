@@ -8,3 +8,4 @@ node_modules/
 renovate.json
 gulpfile.js
 /.vscode
+dist
