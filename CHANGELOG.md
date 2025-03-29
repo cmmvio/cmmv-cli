@@ -1,3 +1,8 @@
+## <small>0.10.1 (2025-03-29)</small>
+
+
+
+
 ## 0.10.0 (2025-03-29)
 
 * refactor: pre build to cjs ([7c735c7](https://github.com/cmmvio/cmmv-cli/commit/7c735c7))
