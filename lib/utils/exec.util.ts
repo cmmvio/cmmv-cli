@@ -1,6 +1,6 @@
+import { execa } from 'execa';
 
 export const run = async (bin, args, opts = {}, awaitProcess = false) => {
-    const execa = require('execa');
 
     try {
         if(!awaitProcess){

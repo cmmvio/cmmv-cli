@@ -1,19 +1,20 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "module": "ESNext",
-        "moduleResolution": "node",
-        "target": "ES2021",
-        "skipLibCheck": true,
-        "sourceMap": false,
-        "allowJs": true,
-        "strict": true,
-        "baseUrl": ".",
-        "outDir": "./dist",
-        "useUnknownInCatchVariables": false,
-        "noImplicitAny": false,
-        "types": ["node"]
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "target": "ESNext",
+      "declaration": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "sourceMap": false,
+      "allowJs": true,
+      "strict": true,
+      "baseUrl": ".",
+      "outDir": "./dist",
+      "useUnknownInCatchVariables": false,
+      "noImplicitAny": false,
+      "types": ["node"]
     },
     "include": ["actions", "bin", "commands", "lib"],
     "exclude": ["node_modules", "e2e"]
-}
+  }
