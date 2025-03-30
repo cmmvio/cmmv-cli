@@ -3,8 +3,8 @@ import * as path from 'node:path';
 import { Logger } from '@cmmv/core';
 
 import chalk from 'chalk';
-import * as enquirer from 'enquirer';
-import * as semver from 'semver';
+import enquirer from 'enquirer';
+import semver from 'semver';
 
 import { run } from '../utils/exec.util.js';
 

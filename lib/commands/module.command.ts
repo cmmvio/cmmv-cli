@@ -27,6 +27,11 @@ export const createModule = async (args) => {
                 { name: 'Core', value: 'core', 'checked': true },
                 { name: 'Http', value: 'http' },
                 { name: 'Encryptor', value: 'encryptor' },
+                { name: 'Auth', value: 'auth' },
+                { name: 'Email', value: 'email' },
+                { name: 'Vault', value: 'vault' },
+                { name: 'Queue', value: 'queue' },
+                { name: 'Repository', value: 'repository' }
             ],
         },
     ]);

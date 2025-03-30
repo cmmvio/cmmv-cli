@@ -38,6 +38,31 @@ export const configureModule = async ({
         console.log('✔ Added Encryptor module.');
     }
 
+    if (additionalModules.includes('auth')) {
+        modules.push('@cmmv/auth');
+        console.log('✔ Added Auth module.');
+    }
+
+    if (additionalModules.includes('email')) {
+        modules.push('@cmmv/email');
+        console.log('✔ Added Email module.');
+    }
+
+    if (additionalModules.includes('vault')) {
+        modules.push('@cmmv/vault');
+        console.log('✔ Added Vault module.');
+    }
+
+    if (additionalModules.includes('queue')) {
+        modules.push('@cmmv/queue');
+        console.log('✔ Added Queue module.');
+    }
+
+    if (additionalModules.includes('repository')) {
+        modules.push('@cmmv/repository');
+        console.log('✔ Added Repository module.');
+    }
+
     const spinner = ora('Installing dependencies...').start();
 
     try {
