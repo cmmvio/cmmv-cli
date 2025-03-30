@@ -9,7 +9,7 @@ import { execa } from 'execa';
 
 const { prompt } = enquirer;
 
-import { run } from '../utils/exec.util.js';
+import { run } from './lib/utils/exec.util.js';
 
 export const releaseScript = async (args) => {
     const logger = new Logger('CLI');
@@ -131,3 +131,11 @@ function updatePackage(version) {
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 4) + '\n');
     console.log(`Updated package.json version to ${version}`);
 }
+
+releaseScript({
+    tsConfigPath: 'tsconfig.json',
+    packagePath: 'package.json',
+    manager: 'pnpm',
+    debug: true,
+});
+

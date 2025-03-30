@@ -29,7 +29,7 @@
         "clean": "find ./lib -type f \\( -name '*.d.ts' -o -name '*.js' \\) -exec rm -f {} +",
         "start": "node dist/bin/cmmv.js",
         "dev": "node dist/bin/cmmv dev --watch --debug",
-        "release": "node release.js",
+        "release": "tsx release.ts",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
         "prepack": "npm run build",
         "prepublish:npm": "npm run build",
