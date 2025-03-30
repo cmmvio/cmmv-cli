@@ -11,7 +11,20 @@ const { prompt } = enquirer;
 
 import { run } from '../utils/exec.util.js';
 
-export const releaseScript = async (args) => {
+// Define interfaces for prompt responses
+interface ReleasePromptResponse {
+  release: string;
+}
+
+interface VersionPromptResponse {
+  version: string;
+}
+
+interface ConfirmPromptResponse {
+  yes: boolean;
+}
+
+export const releaseScript = async (args: any) => {
     const logger = new Logger('CLI');
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
     const packagePath = path.resolve(process.cwd(), args.packagePath);
@@ -37,14 +50,14 @@ export const releaseScript = async (args) => {
     ).version;
     const versionIncrements = ['patch', 'minor', 'major'];
 
-    const inc = (i) => semver.inc(currentVersion, i);
-    const step = (msg) => console.log(chalk.cyan(msg));
+    const inc = (i: string) => semver.inc(currentVersion, i as semver.ReleaseType);
+    const step = (msg: string) => console.log(chalk.cyan(msg));
 
-    let targetVersion;
+    let targetVersion: string;
 
     try {
         // Prompt release type
-        const { release } = await prompt({
+        const { release } = await prompt<ReleasePromptResponse>({
             type: 'select',
             name: 'release',
             message: 'Select release type:',
@@ -54,7 +67,7 @@ export const releaseScript = async (args) => {
         });
 
         if (release === 'custom') {
-            const { version } = await prompt({
+            const { version } = await prompt<VersionPromptResponse>({
                 type: 'input',
                 name: 'version',
                 message: 'Input custom version:',
@@ -62,14 +75,15 @@ export const releaseScript = async (args) => {
             });
             targetVersion = version;
         } else {
-            targetVersion = release.match(/\((.*)\)/)[1];
+            const match = release.match(/\((.*)\)/);
+            targetVersion = match ? match[1] : release;
         }
 
         if (!semver.valid(targetVersion))
             throw new Error(`Invalid target version: ${targetVersion}`);
 
         // Confirm release
-        const { yes: tagOk } = await prompt({
+        const { yes: tagOk } = await prompt<ConfirmPromptResponse>({
             type: 'confirm',
             name: 'yes',
             message: `Releasing v${targetVersion}. Confirm?`,
@@ -88,7 +102,7 @@ export const releaseScript = async (args) => {
         step('\nGenerating the changelog...');
         await run('pnpm', ['run', 'changelog']);
 
-        const { yes: changelogOk } = await prompt({
+        const { yes: changelogOk } = await prompt<ConfirmPromptResponse>({
             type: 'confirm',
             name: 'yes',
             message: `Changelog generated. Does it look good?`,
@@ -115,14 +129,14 @@ export const releaseScript = async (args) => {
         await run('git', ['push']);
 
         console.log(chalk.green(`\nSuccessfully released v${targetVersion}!`));
-    } catch (err) {
+    } catch (err: any) {
         console.error(chalk.red(`\nAn error occurred during the release process:`));
         console.error(err.message);
         process.exit(1);
     }
 };
 
-function updatePackage(version) {
+function updatePackage(version: string): void {
     const pkgPath = path.resolve(process.cwd(), 'package.json');
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
 
