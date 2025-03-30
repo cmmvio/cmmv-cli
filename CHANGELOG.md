@@ -1,3 +1,8 @@
+## <small>0.10.3 (2025-03-30)</small>
+
+
+
+
 ## <small>0.10.2 (2025-03-29)</small>
 
 * fix: execa import ([5a1ed51](https://github.com/cmmvio/cmmv-cli/commit/5a1ed51))

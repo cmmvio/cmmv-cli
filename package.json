@@ -1,6 +1,6 @@
 {
     "name": "@cmmv/cli",
-    "version": "0.10.2",
+    "version": "0.10.3",
     "description": "CLI tool for CMMV applications",
     "type": "module",
     "publishConfig": {
@@ -83,6 +83,7 @@
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tslib": "^2.8.1",
+        "tsx": "^4.19.3",
         "typescript": "^5.8.2",
         "yargs": "^17.7.2"
     },
