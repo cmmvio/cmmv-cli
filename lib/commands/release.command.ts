@@ -43,7 +43,7 @@ export const releaseScript = async (args: any) => {
     await run(args.manager, ['run', 'build', '--debug', args.debug || true], {
         env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
         stdio: 'inherit',
-    });
+    }, true);
 
     const currentVersion = JSON.parse(
         fs.readFileSync(packagePath, 'utf-8'),
@@ -100,7 +100,7 @@ export const releaseScript = async (args: any) => {
 
         // Generate the changelog
         step('\nGenerating the changelog...');
-        await run('pnpm', ['run', 'changelog']);
+        await run('pnpm', ['run', 'changelog'], true);
 
         const { yes: changelogOk } = await prompt<ConfirmPromptResponse>({
             type: 'confirm',
@@ -115,18 +115,18 @@ export const releaseScript = async (args: any) => {
 
         // Commit changes and create a Git tag
         step('\nCommitting changes...');
-        await run('git', ['add', 'CHANGELOG.md', 'package.json']);
-        await run('git', ['commit', '-m', `release: v${targetVersion}`]);
-        await run('git', ['tag', `v${targetVersion}`]);
+        await run('git', ['add', 'CHANGELOG.md', 'package.json'], true);
+        await run('git', ['commit', '-m', `release: v${targetVersion}`], true);
+        await run('git', ['tag', `v${targetVersion}`], true);
 
         // Publish the package
         step('\nPublishing the package...');
-        await run('pnpm', ['publish', '--access', 'public']);
+        await run('pnpm', ['publish', '--access', 'public'], true);
 
         // Push changes to GitHub
         step('\nPushing to GitHub...');
-        await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`]);
-        await run('git', ['push']);
+        await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`], true);
+        await run('git', ['push'], true);
 
         console.log(chalk.green(`\nSuccessfully released v${targetVersion}!`));
     } catch (err: any) {

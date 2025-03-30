@@ -123,7 +123,7 @@ export const execDevMode = async (args) => {
                     ...process.env,
                 },
                 stdio: 'inherit',
-            },
+            }
         );
     } catch (error) {
         logger.error(`Error executing script:`, error);

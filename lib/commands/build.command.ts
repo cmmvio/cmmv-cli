@@ -42,17 +42,17 @@ export const execBuild = async (args) => {
                 await run('tsc', ['--project', 'tsconfig.cjs.json'], {
                     env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
                     stdio: 'inherit',
-                });
+                }, true);
 
                 await run('tsc', ['--project', 'tsconfig.esm.json'], {
                     env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
                     stdio: 'inherit',
-                });
+                }, true);
             } else {
                 await run('tsc', ['--project', tsConfigPath], {
                     env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
                     stdio: 'inherit',
-                });
+                }, true);
             }
             break;
         case 'swc':
@@ -81,6 +81,7 @@ export const execBuild = async (args) => {
                         env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
                         stdio: 'inherit',
                     },
+                    true,
                 );
 
                 await fs.renameSync(tmpDir + '/src', outPath);

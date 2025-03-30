@@ -35,7 +35,7 @@ export const execStart = async (args) => {
                 ...process.env,
             },
             stdio: 'inherit',
-        });
+        }, true);
     } catch (error) {
         logger.error(`Error executing script:`, error);
     }

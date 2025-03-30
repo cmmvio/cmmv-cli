@@ -28,7 +28,7 @@ export const execRun = async (args) => {
                 ...process.env,
             },
             stdio: 'inherit',
-        });
+        }, true);
     } catch (error) {
         logger.error(`Error executing script:`, error);
     }
