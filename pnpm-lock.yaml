@@ -56,12 +56,6 @@ importers:
       commander:
         specifier: ^11.1.0
         version: 11.1.0
-      conventional-changelog:
-        specifier: ^6.0.0
-        version: 6.0.0(conventional-commits-filter@5.0.0)
-      conventional-changelog-cli:
-        specifier: ^5.0.0
-        version: 5.0.0(conventional-commits-filter@5.0.0)
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
@@ -141,6 +135,12 @@ importers:
       '@types/node':
         specifier: ^20.17.28
         version: 20.17.28
+      conventional-changelog:
+        specifier: ^6.0.0
+        version: 6.0.0(conventional-commits-filter@5.0.0)
+      conventional-changelog-cli:
+        specifier: ^5.0.0
+        version: 5.0.0(conventional-commits-filter@5.0.0)
 
 packages:
 

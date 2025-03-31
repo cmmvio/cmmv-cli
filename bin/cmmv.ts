@@ -13,7 +13,8 @@ import {
     execRun,
     execLint,
     releaseScript,
-    installModules
+    installModules,
+    execChangelog
 } from '../lib/commands/index.js';
 
 yargs(hideBin(process.argv))
@@ -283,6 +284,29 @@ yargs(hideBin(process.argv))
                 })
         },
         execRun
+    )
+    .command(
+        'changelog <filename>',
+        'Run changelog script',
+        yargs => {
+            return yargs
+                .positional('filename', {
+                    type: 'string',
+                    describe: 'Path to main file',
+                    demandOption: true,
+                })
+                .option('tsConfigPath', {
+                    type: 'string',
+                    describe: 'Path to tsconfig.json',
+                    default: "./tsconfig.json"
+                })
+                .option('packagePath', {
+                    type: 'string',
+                    describe: 'Path to package.json',
+                    default: "./package.json"
+                })
+        },
+        execChangelog
     )
     .command(
         'lint',

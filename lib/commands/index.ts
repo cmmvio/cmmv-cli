@@ -1,4 +1,5 @@
 export * from './build.command.js';
+export * from './changelog.command.js';
 export * from './contract.command.js';
 export * from './create.command.js';
 export * from './dev.command.js';

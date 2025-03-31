@@ -63,8 +63,6 @@
         "chalk": "^5.4.1",
         "chokidar": "^4.0.3",
         "commander": "^11.1.0",
-        "conventional-changelog": "^6.0.0",
-        "conventional-changelog-cli": "^5.0.0",
         "dotenv": "^16.4.7",
         "enquirer": "^2.4.1",
         "esbuild": "^0.25.2",
@@ -92,7 +90,9 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/inquirer": "^9.0.7",
-        "@types/node": "^20.17.28"
+        "@types/node": "^20.17.28",
+        "conventional-changelog": "^6.0.0",
+        "conventional-changelog-cli": "^5.0.0"
     },
     "lint-staged": {
         "**/*.{ts,json}": [
