@@ -1,3 +1,9 @@
+## <small>0.10.19 (2025-03-31)</small>
+
+* fix: restore cursor version ([7dfab6b](https://github.com/cmmvio/cmmv-cli/commit/7dfab6b))
+
+
+
 ## <small>0.10.18 (2025-03-31)</small>
 
 * fix: release command ([b80519b](https://github.com/cmmvio/cmmv-cli/commit/b80519b))
