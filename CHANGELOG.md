@@ -1,3 +1,9 @@
+## <small>0.10.16 (2025-03-31)</small>
+
+* fix: changelog ([4d0fc31](https://github.com/cmmvio/cmmv-cli/commit/4d0fc31))
+
+
+
 ## <small>0.10.15 (2025-03-31)</small>
 
 * fix: changelog ([898cbf8](https://github.com/cmmvio/cmmv-cli/commit/898cbf8))
