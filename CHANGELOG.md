@@ -1,3 +1,15 @@
+## <small>0.10.4 (2025-03-31)</small>
+
+* fix: exec test ([46c1569](https://github.com/cmmvio/cmmv-cli/commit/46c1569))
+* fix: release ([0082c03](https://github.com/cmmvio/cmmv-cli/commit/0082c03))
+* fix: release ([e88785f](https://github.com/cmmvio/cmmv-cli/commit/e88785f))
+* fix: release script ([1dc1152](https://github.com/cmmvio/cmmv-cli/commit/1dc1152))
+* fix: run commands ([0fa14da](https://github.com/cmmvio/cmmv-cli/commit/0fa14da))
+* refactor: include tests ([13372af](https://github.com/cmmvio/cmmv-cli/commit/13372af))
+* refactor: update release script ([c688fb6](https://github.com/cmmvio/cmmv-cli/commit/c688fb6))
+
+
+
 ## <small>0.10.3 (2025-03-30)</small>
 
 
