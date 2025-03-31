@@ -46,7 +46,7 @@ export const releaseScript = async (args: any) => {
     }
 
     //Build project
-    await run(args.manager, ['run', 'build', '--debug', args.debug || true], {
+    await run(args.manager, ['run', 'build'], {
         env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
         stdio: 'inherit',
     });
