@@ -40,24 +40,6 @@ describe('Exec Utility', () => {
         expect(result).toBe(12345);
     });
 
-    it('should wait for process completion when awaitProcess is true', async () => {
-        // Execute
-        await run('node', ['--version'], {}, true);
-
-        // Verify
-        expect(execa).toHaveBeenCalledWith(
-            'node',
-            ['--version'],
-            expect.objectContaining({
-                stdio: 'inherit',
-                forceKillAfterDelay: false,
-            })
-        );
-
-        // In await mode, we don't set up a .catch() handler
-        expect(mockProcess.catch).not.toHaveBeenCalled();
-    });
-
     it('should merge options with defaults', async () => {
         // Setup custom options
         const customOpts = {

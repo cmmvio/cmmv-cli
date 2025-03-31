@@ -17,10 +17,7 @@ export const run = async (bin, args, opts = {}, awaitProcess = false) => {
             return subprocess.pid;
         }
         else{
-            await execa(bin, args, {
-                stdio: 'inherit',
-                ...opts
-            });
+            await execa(bin, args, { stdio: 'inherit', ...opts });
         }
     } catch {  }
 };
