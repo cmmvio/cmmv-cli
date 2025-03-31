@@ -107,7 +107,7 @@ export const releaseScript = async (args: any) => {
 
         // Publish the package
         step('\nPublishing the package...');
-        await run('pnpm', ['publish', '--access', 'public'], true);
+        await run('pnpm', ['publish', '--access', 'public', '--no-git-checks'], true);
 
         // Push changes to GitHub
         step('\nPushing to GitHub...');
