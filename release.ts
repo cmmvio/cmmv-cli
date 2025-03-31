@@ -115,9 +115,9 @@ export const releaseScript = async (args: any) => {
 
         // Commit changes and create a Git tag
         step('\nCommitting changes...');
-        await run('git', ['add', 'CHANGELOG.md', 'package.json'], true);
-        await run('git', ['commit', '-m', `release: v${targetVersion}`], true);
-        await run('git', ['tag', `v${targetVersion}`], true);
+        await run('git', ['add', 'CHANGELOG.md', 'package.json']);
+        await run('git', ['commit', '-m', `release: v${targetVersion}`]);
+        await run('git', ['tag', `v${targetVersion}`]);
 
         // Publish the package
         step('\nPublishing the package...');
