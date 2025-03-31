@@ -1,5 +1,10 @@
 ## <small>0.10.17 (2025-03-31)</small>
 
+
+
+
+## <small>0.10.17 (2025-03-31)</small>
+
 * fix: no git checks release ([6d9b077](https://github.com/cmmvio/cmmv-cli/commit/6d9b077))
 
 
