@@ -1,3 +1,12 @@
+## <small>0.10.18 (2025-03-31)</small>
+
+* fix: release command ([b80519b](https://github.com/cmmvio/cmmv-cli/commit/b80519b))
+* release: v1.0.1 ([cdbc6e7](https://github.com/cmmvio/cmmv-cli/commit/cdbc6e7))
+* release: v1.0.1 ([7d4461e](https://github.com/cmmvio/cmmv-cli/commit/7d4461e))
+* release: v1.0.1 ([b225421](https://github.com/cmmvio/cmmv-cli/commit/b225421))
+
+
+
 ## <small>0.10.17 (2025-03-31)</small>
 
 * release: v1.0.1 ([7d4461e](https://github.com/cmmvio/cmmv-cli/commit/7d4461e))
