@@ -286,15 +286,10 @@ yargs(hideBin(process.argv))
         execRun
     )
     .command(
-        'changelog <filename>',
+        'changelog',
         'Run changelog script',
         yargs => {
             return yargs
-                .positional('filename', {
-                    type: 'string',
-                    describe: 'Path to main file',
-                    demandOption: true,
-                })
                 .option('tsConfigPath', {
                     type: 'string',
                     describe: 'Path to tsconfig.json',
