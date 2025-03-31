@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@cmmv/core':
         specifier: latest
-        version: 0.9.22
+        version: 0.9.29
       '@commitlint/cli':
         specifier: ^19.8.0
         version: 19.8.0(@types/node@20.17.28)(typescript@5.8.2)
@@ -101,6 +101,9 @@ importers:
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
+      restore-cursor:
+        specifier: ^5.1.0
+        version: 5.1.0
       semver:
         specifier: ^7.7.1
         version: 7.7.1
@@ -152,8 +155,8 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@cmmv/core@0.9.22':
-    resolution: {integrity: sha512-GXIEF9Xwe0sKimOQCV9Y7lnlRmLUPlINDPyTkWEvasOfbktgNfh4RQgo3WkHtRS5zUeK4MxJ3MrKbFR0iTSs1A==}
+  '@cmmv/core@0.9.29':
+    resolution: {integrity: sha512-JuZKsRCvBE5xEcQ+n9/Ideafadt9nQwKWa3wVzP4ngBG/007zjoiPBHXGxcNshdjiib9u6dPoqksAeajuaf/eA==}
 
   '@commitlint/cli@19.8.0':
     resolution: {integrity: sha512-t/fCrLVu+Ru01h0DtlgHZXbHV2Y8gKocTR5elDOqIRUzQd0/6hpt2VIWOj9b3NDo7y4/gfxeR2zRtXq/qO6iUg==}
@@ -2845,7 +2848,7 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@cmmv/core@0.9.22':
+  '@cmmv/core@0.9.29':
     dependencies:
       class-transformer: 0.5.1
       class-validator: 0.14.1
