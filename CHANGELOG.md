@@ -1,3 +1,9 @@
+## <small>0.10.5 (2025-03-31)</small>
+
+* release: v0.10.4 ([efeecf7](https://github.com/cmmvio/cmmv-cli/commit/efeecf7))
+
+
+
 ## <small>0.10.4 (2025-03-31)</small>
 
 * fix: exec test ([46c1569](https://github.com/cmmvio/cmmv-cli/commit/46c1569))
