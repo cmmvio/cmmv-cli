@@ -4,10 +4,19 @@ import * as path from 'node:path';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
 import semver from 'semver';
+import { execa } from 'execa';
 
 const { prompt } = enquirer;
 
-import { run } from '../utils/exec.util.js';
+const run = async (bin, args, opts = {}) => {
+    try {
+        await execa(bin, args, { stdio: 'inherit', ...opts });
+    } catch (err) {
+        console.error(chalk.red(`Error running command: ${bin} ${args.join(' ')}`));
+        console.error(err.message);
+        process.exit(1);
+    }
+};
 
 // Define interfaces for prompt responses
 interface ReleasePromptResponse {
@@ -40,7 +49,7 @@ export const releaseScript = async (args: any) => {
     await run(args.manager, ['run', 'build', '--debug', args.debug || true], {
         env: { ...process.env, TS_NODE_PROJECT: tsConfigPath },
         stdio: 'inherit',
-    }, true);
+    });
 
     const currentVersion = JSON.parse(
         fs.readFileSync(packagePath, 'utf-8'),
@@ -97,22 +106,22 @@ export const releaseScript = async (args: any) => {
 
         // Generate the changelog
         step('\nGenerating the changelog...');
-        await run('pnpm', ['run', 'changelog'], true);
+        await run('pnpm', ['run', 'changelog']);
 
         // Commit changes and create a Git tag
         step('\nCommitting changes...');
-        await run('git', ['add', 'CHANGELOG.md', 'package.json'], true);
-        await run('git', ['commit', '-m', `release: v${targetVersion}`], true);
-        await run('git', ['tag', `v${targetVersion}`], true);
+        await run('git', ['add', 'CHANGELOG.md', 'package.json']);
+        await run('git', ['commit', '-m', `release: v${targetVersion}`]);
+        await run('git', ['tag', `v${targetVersion}`]);
 
         // Publish the package
         step('\nPublishing the package...');
-        await run('pnpm', ['publish', '--access', 'public', '--no-git-checks'], true);
+        await run('pnpm', ['publish', '--access', 'public', '--no-git-checks']);
 
         // Push changes to GitHub
         step('\nPushing to GitHub...');
-        await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`], true);
-        await run('git', ['push'], true);
+        await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`]);
+        await run('git', ['push']);
 
         console.log(chalk.green(`\nSuccessfully released v${targetVersion}!`));
     } catch (err: any) {
