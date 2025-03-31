@@ -1,5 +1,12 @@
 ## <small>0.10.17 (2025-03-31)</small>
 
+* release: v1.0.1 ([7d4461e](https://github.com/cmmvio/cmmv-cli/commit/7d4461e))
+* release: v1.0.1 ([b225421](https://github.com/cmmvio/cmmv-cli/commit/b225421))
+
+
+
+## <small>0.10.17 (2025-03-31)</small>
+
 * release: v1.0.1 ([b225421](https://github.com/cmmvio/cmmv-cli/commit/b225421))
 
 
