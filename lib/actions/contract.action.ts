@@ -3,16 +3,16 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 export const configureContract = async ({
-  contractOptions,
-  cacheOptions,
-  fields,
+    contractOptions,
+    cacheOptions,
+    fields,
 }) => {
-  const sourcePath = path.resolve(process.cwd(), 'src');
-  const contractPath = path.resolve(sourcePath, 'contracts');
+    const sourcePath = path.resolve(process.cwd(), 'src');
+    const contractPath = path.resolve(sourcePath, 'contracts');
 
-  if (fs.existsSync(sourcePath) && fs.existsSync(contractPath)) {
-    try {
-      const contractFile = `import { AbstractContract, Contract, ContractField } from '@cmmv/core';
+    if (fs.existsSync(sourcePath) && fs.existsSync(contractPath)) {
+        try {
+            const contractFile = `import { AbstractContract, Contract, ContractField } from '@cmmv/core';
 
 @Contract({
     controllerName: '${contractOptions.controllerName}',
@@ -25,8 +25,8 @@ export const configureContract = async ({
 })
 export class ${contractOptions.controllerName}Contract extends AbstractContract {
 ${fields
-  .map(
-    (field) => `
+                    .map(
+                        (field) => `
     @ContractField({
         protoType: '${field.protoType}',
         ${field.protoRepeated ? `protoRepeated: true,` : ''}
@@ -36,19 +36,22 @@ ${fields
     })
     ${field.name}: ${field.protoType === 'bool' ? 'boolean' : 'string'};
 `,
-  )
-  .join('\n')}
+                    )
+                    .join('\n')}
 }`;
 
-      const filePath = path.join(
-        contractPath,
-        `${contractOptions.controllerName.toLowerCase()}.contract.ts`,
-      );
-      fs.writeFileSync(filePath, contractFile);
-    } catch {
-      console.log('❌ Failed to create contract.');
+            if (!fs.existsSync(contractPath))
+                fs.mkdirSync(contractPath, { recursive: true });
+
+            const filePath = path.join(
+                contractPath,
+                `${contractOptions.controllerName.toLowerCase()}.contract.ts`,
+            );
+            fs.writeFileSync(filePath, contractFile);
+        } catch {
+            console.log('❌ Failed to create contract.');
+        }
+    } else {
+        console.log('❌ Please navigate to a valid CMMV project.');
     }
-  } else {
-    console.log('❌ Please navigate to a valid CMMV project.');
-  }
 };

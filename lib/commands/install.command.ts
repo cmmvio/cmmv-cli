@@ -39,6 +39,7 @@ export const installModules = async (args) => {
                 { name: 'Testing', value: 'testing' },
                 { name: 'WebSocket', value: 'ws' },
                 { name: 'Protobuf', value: 'protobuf' },
+                { name: 'Model Context Protocol (Beta)', value: 'mcp' },
             ],
         }
     ]);

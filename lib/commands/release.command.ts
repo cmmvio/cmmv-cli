@@ -1,11 +1,9 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { Logger } from '@cmmv/core';
 
 import chalk from 'chalk';
 import enquirer from 'enquirer';
 import semver from 'semver';
-import { execa } from 'execa';
 
 const { prompt } = enquirer;
 
@@ -25,17 +23,16 @@ interface ConfirmPromptResponse {
 }
 
 export const releaseScript = async (args: any) => {
-    const logger = new Logger('CLI');
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
     const packagePath = path.resolve(process.cwd(), args.packagePath);
 
     if (!fs.existsSync(packagePath)) {
-        logger.error('package.json not found!');
+        console.error('package.json not found!');
         return;
     }
 
     if (!fs.existsSync(tsConfigPath)) {
-        logger.error('tsconfig.json not found!');
+        console.error('tsconfig.json not found!');
         return;
     }
 

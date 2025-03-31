@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import * as chokidar from 'chokidar';
-import { Logger } from '@cmmv/core';
+import chokidar from 'chokidar';
 
 import { run } from '../utils/exec.util.js';
 
@@ -11,14 +10,20 @@ let restartTimeout: any = null;
 
 const RESTART_DELAY = 1000;
 
+const isTestEnvironment = () => {
+    return process.env.NODE_ENV === 'test' ||
+           process.env.VITEST !== undefined ||
+           process.env.JEST_WORKER_ID !== undefined;
+};
+
 export const execDevMode = async (args) => {
-    const logger = new Logger('CLI');
     const absolutePath = path.resolve(process.cwd(), args.pathMain);
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
     const packagePath = path.resolve(process.cwd(), args.packagePath);
+    const runner = args.runner || 'swc-node';
 
     if (!fs.existsSync(packagePath)) {
-        logger.error('package.json not found!');
+        console.error('package.json not found!');
         return;
     }
 
@@ -34,13 +39,14 @@ export const execDevMode = async (args) => {
     };
 
     if (!fs.existsSync(tsConfigPath)) {
-        logger.error('tsconfig.json not found!');
+        console.error('tsconfig.json not found!');
         return;
     }
 
     if (args.debug) {
-        logger.verbose(`Running script: ${absolutePath}`);
-        logger.verbose(`Using tsconfig: ${tsConfigPath}`);
+        console.log(`Running script: ${absolutePath}`);
+        console.log(`Using tsconfig: ${tsConfigPath}`);
+        console.log(`Using runner: ${runner}`);
     }
 
     try {
@@ -57,19 +63,46 @@ export const execDevMode = async (args) => {
             }, true);
         }
 
-        if (args.debug) {
-            logger.verbose(
-                `Start process: node -r @swc-node/register ${absolutePath} --debug=${args.debug}`,
-            );
+        let nodeCommand = 'node';
+        let nodeArgs: string[] = [];
+
+        switch (runner) {
+            case 'swc-node':
+                nodeArgs = ['-r', '@swc-node/register', absolutePath];
+                if (args.debug) {
+                    console.log(
+                        `Start process: node -r @swc-node/register ${absolutePath} --debug=${args.debug}`,
+                    );
+                }
+                break;
+
+            case 'ts-node':
+                nodeCommand = 'ts-node';
+                nodeArgs = [
+                    '--project', tsConfigPath,
+                    absolutePath
+                ];
+                if (args.debug) {
+                    console.log(
+                        `Start process: ts-node --project ${tsConfigPath} ${absolutePath} --debug=${args.debug}`,
+                    );
+                }
+                break;
+
+            case 'tsx':
+                nodeCommand = 'tsx';
+                nodeArgs = [absolutePath];
+                if (args.debug) {
+                    console.log(
+                        `Start process: tsx ${absolutePath} --debug=${args.debug}`,
+                    );
+                }
+                break;
         }
 
-        if (args.watch) {
+        if (args.watch && !isTestEnvironment()) {
             setTimeout(async () => {
                 if (watcher) await watcher?.close();
-
-                logger.verbose(
-                    `Start file change watcher`,
-                );
 
                 watcher = chokidar.watch(config.watch, {
                     ignored: [
@@ -86,7 +119,7 @@ export const execDevMode = async (args) => {
 
                 const restartProcess = async () => {
                     if (childProcess) {
-                        logger.verbose('Restarting process...');
+                        console.log('Restarting process...');
                         process.kill(childProcess);
                         childProcess = null;
                     }
@@ -103,19 +136,21 @@ export const execDevMode = async (args) => {
 
                 watcher
                     .on('change', (filePath) => {
-                        logger.warning(`File changed: ${filePath}`);
+                        console.log(`File changed: ${filePath}`);
                         restartProcess();
                     })
                     .on('unlink', (filePath) => {
-                        logger.error(`File removed: ${filePath}`);
+                        console.error(`File removed: ${filePath}`);
                         restartProcess();
                     });
             }, 3000);
+        } else if (args.watch && isTestEnvironment()) {
+            console.log('File watching disabled in test environment');
         }
 
         childProcess = await run(
-            'node',
-            ['-r', '@swc-node/register', absolutePath],
+            nodeCommand,
+            nodeArgs,
             {
                 env: {
                     TS_NODE_PROJECT: tsConfigPath,
@@ -126,6 +161,6 @@ export const execDevMode = async (args) => {
             }
         );
     } catch (error) {
-        logger.error(`Error executing script:`, error);
+        console.error(`Error executing script:`, error);
     }
 };

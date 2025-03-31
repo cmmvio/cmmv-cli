@@ -1,10 +1,7 @@
 import * as path from 'node:path';
-import { Logger } from '@cmmv/core';
-
 import { run } from '../utils/exec.util.js';
 
 export const execLint = async (args) => {
-    const logger = new Logger('CLI');
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
 
     try {
@@ -16,6 +13,6 @@ export const execLint = async (args) => {
             stdio: 'inherit',
         }, true);
     } catch (error) {
-        logger.error(`Error executing script:`, error);
+        console.error(`Error executing script:`, error);
     }
 };

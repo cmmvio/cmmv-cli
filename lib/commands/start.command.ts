@@ -1,33 +1,29 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';
 
 export const execStart = async (args) => {
-    const logger = new Logger('CLI');
     const absoluteMainPath = path.resolve(process.cwd(), args.mainPath);
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
     const packagePath = path.resolve(process.cwd(), args.packagePath);
 
     if (!fs.existsSync(packagePath)) {
-        logger.error('package.json not found!');
+        console.error('package.json not found!');
         return;
     }
 
     if (!fs.existsSync(tsConfigPath)) {
-        logger.error('tsconfig.json not found!');
+        console.error('tsconfig.json not found!');
         return;
     }
 
     if (args.debug) {
-        logger.verbose(`Running script: ${absoluteMainPath}`);
-        logger.verbose(`Using tsconfig: ${tsConfigPath}`);
+        console.log(`Running script: ${absoluteMainPath}`);
+        console.log(`Using tsconfig: ${tsConfigPath}`);
     }
 
     try {
-        if (args.debug) logger.verbose(`Start process: node ${absoluteMainPath}`);
-
         await run('node', [absoluteMainPath], {
             env: {
                 TS_NODE_PROJECT: tsConfigPath,
@@ -37,6 +33,6 @@ export const execStart = async (args) => {
             stdio: 'inherit',
         }, true);
     } catch (error) {
-        logger.error(`Error executing script:`, error);
+        console.error(`Error executing script:`, error);
     }
 };

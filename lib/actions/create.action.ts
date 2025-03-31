@@ -138,6 +138,13 @@ import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';\n`;
         mainModules.push('OpenAPIModule');
     }
 
+    if (additionalModules.includes('mcp')) {
+        modules.push('@cmmv/mcp');
+        console.log('✔ Added MCP module.');
+        mainImports += "import { MCPModule } from '@cmmv/mcp';\n";
+        mainModules.push('MCPModule');
+    }
+
     if (rpc) {
         modules.push('@cmmv/ws', '@cmmv/protobuf');
         console.log('✔ Added RPC module.');

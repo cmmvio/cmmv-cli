@@ -162,6 +162,12 @@ yargs(hideBin(process.argv))
                     describe: 'Debug informations',
                     default: false,
                 })
+                .option('runner', {
+                    type: 'string',
+                    describe: 'TypeScript runtime to use',
+                    choices: ['swc-node', 'ts-node', 'tsx'],
+                    default: 'swc-node'
+                })
         },
         execDevMode
     )

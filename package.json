@@ -34,7 +34,8 @@
         "prepack": "npm run build",
         "prepublish:npm": "npm run build",
         "publish:npm": "npm publish --access public",
-        "prerelease": "npm run build"
+        "prerelease": "npm run build",
+        "test": "vitest"
     },
     "repository": {
         "type": "git",
@@ -85,6 +86,7 @@
         "tslib": "^2.8.1",
         "tsx": "^4.19.3",
         "typescript": "^5.8.2",
+        "vitest": "^3.0.9",
         "yargs": "^17.7.2"
     },
     "devDependencies": {

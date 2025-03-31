@@ -113,6 +113,11 @@ export const installModuleAction = async ({
         console.log('✔ Added Protobuf module.');
     }
 
+    if (additionalModules.includes('mcp')) {
+        modules.push('@cmmv/mcp');
+        console.log('✔ Added MCP module.');
+    }
+
     const spinner = ora('Installing dependencies...').start();
 
     try {

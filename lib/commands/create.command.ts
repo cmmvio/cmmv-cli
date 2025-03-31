@@ -88,6 +88,7 @@ export const createProject = async (args) => {
                 { name: 'Vault', value: 'vault' },
                 { name: 'GraphQL', value: 'graphql', checked: true },
                 { name: 'OpenAPI', value: 'openapi' },
+                { name: 'Model Context Protocol (Beta)', value: 'mcp' },
             ],
         },
         {
