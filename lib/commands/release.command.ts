@@ -95,10 +95,6 @@ export const releaseScript = async (args: any) => {
         step('\nUpdating the package version...');
         updatePackage(targetVersion);
 
-        // Generate the changelog
-        step('\nGenerating the changelog...');
-        await run('pnpm', ['run', 'changelog'], true);
-
         const { yes: changelogOk } = await prompt<ConfirmPromptResponse>({
             type: 'confirm',
             name: 'yes',
@@ -106,6 +102,10 @@ export const releaseScript = async (args: any) => {
         });
 
         if (!changelogOk) {
+            // Generate the changelog
+            step('\nGenerating the changelog...');
+            await run('pnpm', ['run', 'changelog'], true);
+
             console.log(chalk.yellow('Release canceled after changelog review.'));
             return;
         }

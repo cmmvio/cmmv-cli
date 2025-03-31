@@ -19,7 +19,6 @@ export const run = async (bin, args, opts = {}, awaitProcess = false) => {
         else{
             await execa(bin, args, {
                 stdio: 'inherit',
-                forceKillAfterDelay: false,
                 ...opts
             });
         }
