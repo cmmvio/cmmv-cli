@@ -1,3 +1,10 @@
+## 0.11.0 (2025-04-19)
+
+* remove: ora ([d9c5829](https://github.com/cmmvio/cmmv-cli/commit/d9c5829))
+* release: v1.0.1 ([3e3514f](https://github.com/cmmvio/cmmv-cli/commit/3e3514f))
+
+
+
 ## <small>0.10.19 (2025-03-31)</small>
 
 * fix: restore cursor version ([7dfab6b](https://github.com/cmmvio/cmmv-cli/commit/7dfab6b))
