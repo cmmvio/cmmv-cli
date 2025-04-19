@@ -75,7 +75,6 @@
         "inquirer": "^9.3.7",
         "lint-staged": "^15.5.0",
         "npm-run-path": "5.3.0",
-        "ora": "^6.3.1",
         "prettier": "^3.5.3",
         "prompts": "^2.4.2",
         "restore-cursor": "^5.1.0",
