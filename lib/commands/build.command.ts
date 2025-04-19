@@ -1,11 +1,9 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { Logger } from '@cmmv/core';
 
 import { run } from '../utils/exec.util.js';
 
 export const execBuild = async (args) => {
-    const logger = new Logger('CLI');
     const basePath = path.resolve(process.cwd(), args.basePath);
     const outPath = path.resolve(process.cwd(), args.outPath);
     const tsConfigPath = path.resolve(process.cwd(), args.tsConfigPath);
@@ -17,12 +15,12 @@ export const execBuild = async (args) => {
         mainSettings && moduleSettings && mainSettings !== moduleSettings;
 
     if (!fs.existsSync(packagePath)) {
-        logger.error('package.json not found!');
+        console.error('package.json not found!');
         return;
     }
 
     if (!fs.existsSync(tsConfigPath)) {
-        logger.error('tsconfig.json not found!');
+        console.error('tsconfig.json not found!');
         return;
     }
 

@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { execa } from 'execa';
-import ora from 'ora';
 
 export const configureModule = async ({
     manager,
@@ -63,13 +62,11 @@ export const configureModule = async ({
         console.log('✔ Added Repository module.');
     }
 
-    const spinner = ora('Installing dependencies...').start();
+    console.log('Installing dependencies...');
 
     try {
         await execa(manager, ['add', ...modules], { cwd: modulePath });
-        spinner.succeed('Installed dependencies.');
     } catch (error) {
-        spinner.fail('❌ Failed to install dependencies.');
         throw error;
     }
 };

@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { execa } from 'execa';
-import ora from 'ora';
 
 export const configureProject = async ({
     manager,
@@ -394,20 +393,17 @@ Application.create({
     });
 
     console.log('✔ Created src/main.ts.');
-    const spinner = ora('Installing dependencies...').start();
+    console.log('Installing dependencies...');
 
     try {
         await execa(manager, ['add', '-D', ...devModules], { cwd: projectPath });
         await execa(manager, ['add', ...modules], { cwd: projectPath });
-
-        spinner.succeed('Installed dependencies.');
 
         if(manager === 'pnpm'){
             console.log(`\n⚠️  Manually run the following command to approve builds:`);
             console.log(`\n👉  cd ${projectPath} && pnpm approve-builds`);
         }
     } catch (error) {
-        spinner.fail('❌ Failed to install dependencies.');
         throw error;
     }
 };
